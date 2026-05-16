@@ -19,6 +19,16 @@ public class FrmParametrizacion extends javax.swing.JFrame {
      */
     public FrmParametrizacion(FrmMenuPrincipal menu) {
         initComponents();
+        getContentPane().removeAll();
+        getContentPane().setLayout(new java.awt.BorderLayout());
+
+        getContentPane().add(jPanel7, java.awt.BorderLayout.CENTER);
+        getContentPane().add(panelMensajes, java.awt.BorderLayout.SOUTH);
+
+        panelMensajes.setLayout(new java.awt.BorderLayout());
+        panelMensajes.add(jScrollPane4, java.awt.BorderLayout.CENTER);
+
+        panelMensajes.setPreferredSize(new java.awt.Dimension(1000, 100));
         this.myMenu = menu;
         this.setLocationRelativeTo(null);
         llenarTablaRutas();
@@ -56,8 +66,14 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        panelMensajes = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtMensajes = new javax.swing.JTextArea();
+        jPanel7 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         panelRutasPrincipal = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         panelFormularioRutas = new javax.swing.JPanel();
         d = new javax.swing.JLabel();
         g = new javax.swing.JLabel();
@@ -68,8 +84,6 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         m = new javax.swing.JLabel();
         txtTarifaBase = new javax.swing.JTextField();
         btnAnadir = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -222,8 +236,61 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Parametrizacion del Sistema");
         setBackground(new java.awt.Color(153, 153, 153));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
+
+        panelMensajes.setPreferredSize(new java.awt.Dimension(1000, 100));
+
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(900, 100));
+
+        txtMensajes.setEditable(false);
+        txtMensajes.setColumns(20);
+        txtMensajes.setLineWrap(true);
+        txtMensajes.setRows(4);
+        txtMensajes.setWrapStyleWord(true);
+        jScrollPane4.setViewportView(txtMensajes);
+
+        javax.swing.GroupLayout panelMensajesLayout = new javax.swing.GroupLayout(panelMensajes);
+        panelMensajes.setLayout(panelMensajesLayout);
+        panelMensajesLayout.setHorizontalGroup(
+            panelMensajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(panelMensajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMensajesLayout.createSequentialGroup()
+                    .addGap(0, 265, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 265, Short.MAX_VALUE)))
+        );
+        panelMensajesLayout.setVerticalGroup(
+            panelMensajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelMensajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMensajesLayout.createSequentialGroup()
+                    .addGap(0, 184, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 185, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane2.setPreferredSize(new java.awt.Dimension(966, 100));
 
         panelRutasPrincipal.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane1.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Codigo", "Origen", "Destino", "Tarifa Base"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        panelRutasPrincipal.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         panelFormularioRutas.setPreferredSize(new java.awt.Dimension(300, 100));
 
@@ -266,15 +333,15 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                     .addGroup(panelFormularioRutasLayout.createSequentialGroup()
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)
-                        .addComponent(u)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(u)))
+                .addGap(230, 230, 230)
+                .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelFormularioRutasLayout.createSequentialGroup()
                         .addComponent(m)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTarifaBase, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                        .addComponent(txtTarifaBase)
                         .addGap(39, 39, 39))
                     .addGroup(panelFormularioRutasLayout.createSequentialGroup()
                         .addComponent(btnAnadir)
@@ -304,24 +371,6 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         );
 
         panelRutasPrincipal.add(panelFormularioRutas, java.awt.BorderLayout.PAGE_END);
-
-        jScrollPane1.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(100, 100));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Codigo", "Origen", "Destino", "Tarifa Base"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        panelRutasPrincipal.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jTabbedPane2.addTab("Rutas", panelRutasPrincipal);
 
@@ -389,7 +438,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(m1)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTarifaBase1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                        .addComponent(txtTarifaBase1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                         .addGap(39, 39, 39))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnAnadir1)
@@ -498,7 +547,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(m2)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTarifaBase2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(txtTarifaBase2, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                         .addGap(39, 39, 39))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(btnAnadir2)
@@ -533,23 +582,61 @@ public class FrmParametrizacion extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Salidas", jPanel4);
 
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(309, Short.MAX_VALUE)
+                    .addComponent(panelMensajes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(191, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -568,7 +655,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         }
 
         // 2. Capturar los datos de los JTextFields
-        String cod = txtCodigo.getText();
+        String cod = myMenu.getMyEmpresa().generarCodigoRuta();
         String ori = txtOrigen.getText();
         String des = txtDestino.getText();
         double tar = Double.parseDouble(txtTarifaBase.getText());
@@ -586,7 +673,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         // 5. Actualizar la tabla para que se vea lo nuevo
         llenarTablaRutas();
 
-        javax.swing.JOptionPane.showMessageDialog(this, "Ruta añadida con éxito.");
+        mostrarMensaje("Ruta " + cod + " creada correctamente.");
 
     } catch (NumberFormatException e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Error: La tarifa debe ser un número válido.");
@@ -600,9 +687,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         try {
 
         // Validar campos vacíos
-        if (txtCodigo1.getText().isEmpty()
-                || txtOrigen1.getText().isEmpty()
-                || txtDestino1.getText().isEmpty()) {
+        if (txtOrigen1.getText().isEmpty() || txtDestino1.getText().isEmpty()) {
 
             javax.swing.JOptionPane.showMessageDialog(this,
                     "Complete todos los campos.");
@@ -654,18 +739,15 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         try {
 
         // Validar campos vacíos
-        if (txtCodigo2.getText().isEmpty()
-                || txtOrigen2.getText().isEmpty()
-                || txtTarifaBase2.getText().isEmpty()
-                || txtDestino2.getText().isEmpty()
-                || txtOrigen3.getText().isEmpty()) {
+        if (txtOrigen2.getText().isEmpty() || txtTarifaBase2.getText().isEmpty()
+                || txtDestino2.getText().isEmpty() || txtOrigen3.getText().isEmpty()) {
 
             javax.swing.JOptionPane.showMessageDialog(this,
                     "Complete todos los campos.");
             return;
         }
 
-        String idSalida = txtCodigo2.getText().trim();
+        String idSalida = myMenu.getMyEmpresa().generarIdSalida();
         String codigoRuta = txtOrigen2.getText().trim();
         String placaBus = txtTarifaBase2.getText().trim();
         String hora = txtDestino2.getText().trim();
@@ -795,7 +877,10 @@ private void llenarTablaBuses() {
         modelo.addRow(fila);
     }
  
-}
+    }
+        private void mostrarMensaje(String mensaje) {
+    txtMensajes.append("> " + mensaje + "\n");
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -826,9 +911,11 @@ private void llenarTablaBuses() {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
@@ -841,6 +928,7 @@ private void llenarTablaBuses() {
     private javax.swing.JLabel m1;
     private javax.swing.JLabel m2;
     private javax.swing.JPanel panelFormularioRutas;
+    private javax.swing.JPanel panelMensajes;
     private javax.swing.JPanel panelRutasPrincipal;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigo1;
@@ -848,6 +936,7 @@ private void llenarTablaBuses() {
     private javax.swing.JTextField txtDestino;
     private javax.swing.JTextField txtDestino1;
     private javax.swing.JTextField txtDestino2;
+    private javax.swing.JTextArea txtMensajes;
     private javax.swing.JTextField txtOrigen;
     private javax.swing.JTextField txtOrigen1;
     private javax.swing.JTextField txtOrigen2;

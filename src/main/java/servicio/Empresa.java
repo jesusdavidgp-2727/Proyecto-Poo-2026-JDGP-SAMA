@@ -23,8 +23,8 @@ public class Empresa {
         cargarDatosIniciales();
     }
     private void cargarDatosIniciales(){
-        Ruta r01 = new Ruta("R01", "Cucuta", "Bucaramanga", 60000);
-        Ruta r02 = new Ruta("R02", "Cucuta", "Bogotá", 160000);
+        Ruta r01 = new Ruta("R01", "Cucuta", "Bucaramanga", 80000);
+        Ruta r02 = new Ruta("R02", "Cucuta", "Bogota", 160000);
         Ruta r03 = new Ruta("R03", "Cucuta", "Medellin", 180000);
         Ruta r04 = new Ruta("R04", "Cucuta", "Cartagena", 220000);
         listaRutas.add(r01); listaRutas.add(r02); listaRutas.add(r03); listaRutas.add(r04);
@@ -48,12 +48,55 @@ public class Empresa {
     }
     
     
-    public void registrarBus(Bus nuevoBus) {this.listaBuses.add(nuevoBus);}
+    public boolean registrarBus(Bus nuevoBus) {
+        if(buscarBusPlaca(nuevoBus.getPlaca())!= null){
+            return false;
+        }
+        this.listaBuses.add(nuevoBus);
+        return true;
+    }
 
     public void registrarRuta(Ruta nuevaRuta) {this.listaRutas.add(nuevaRuta);}
 
     public void registrarSalida(Salida nuevaSalida) {this.listaSalidas.add(nuevaSalida);}
     
+    public Bus buscarBusPlaca (String placa){
+        for(Bus b: listaBuses){
+            if(b.getPlaca().equalsIgnoreCase(placa)){
+                return b;
+            }
+        }
+        return null;
+    }
+    public String generarCodigoRuta() {
+    int mayor = 0;
+
+    for (Ruta r : listaRutas) {
+        String codigo = r.getCodigoRuta().replace("R", "");
+
+        int numero = Integer.parseInt(codigo);
+
+        if (numero > mayor) {
+            mayor = numero;
+        }
+    }
+        return String.format("R%02d", mayor + 1);
+    }
+    public String generarIdSalida() {
+    int mayor = 0;
+
+    for (Salida s : listaSalidas) {
+        String id = s.getIdSalida().replace("S", "");
+
+        int numero = Integer.parseInt(id);
+
+        if (numero > mayor) {
+            mayor = numero;
+        }
+    }
+
+        return String.format("S%03d", mayor + 1);
+    }
     public ArrayList<Ruta> getListaRutas() {return listaRutas;}
 
     public ArrayList<Bus> getListaBuses() {return listaBuses;}
