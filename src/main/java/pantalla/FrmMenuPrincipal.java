@@ -18,7 +18,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     public FrmMenuPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.myEmpresa = new Empresa();      
+        this.myEmpresa = new Empresa();
+        
+        cambiarEstadoBotones(false);
     }
 
     public Empresa getMyEmpresa() {
@@ -42,6 +44,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnAdmin = new javax.swing.JButton();
         btnReportes = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtCaja = new javax.swing.JTextField();
+        cmdCaja = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +102,16 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         btnSalir.setText("cerrar turno");
         btnSalir.addActionListener(this::btnSalirActionPerformed);
 
+        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel2.setText("caja");
+
+        txtCaja.setPreferredSize(new java.awt.Dimension(100, 22));
+        txtCaja.addActionListener(this::txtCajaActionPerformed);
+
+        cmdCaja.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        cmdCaja.setText("insertar");
+        cmdCaja.addActionListener(this::cmdCajaActionPerformed);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -104,32 +119,43 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAdmin)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(btnReportes))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(btnSalir))))
+                        .addGap(170, 170, 170)
+                        .addComponent(btnSalir))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(btnReportes))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(161, 161, 161)
-                        .addComponent(btnVentas)))
-                .addContainerGap(161, Short.MAX_VALUE))
+                        .addComponent(btnVentas))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(btnAdmin))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmdCaja)))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtCaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmdCaja))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVentas)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAdmin)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnReportes)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,6 +208,52 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         ventas.setVisible(true);
     }//GEN-LAST:event_btnVentasActionPerformed
 
+    private void txtCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCajaActionPerformed
+
+    private void cmdCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCajaActionPerformed
+    String textoCaja = txtCaja.getText().trim();
+    
+    // Validamos que no esté vacío
+    if (textoCaja.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Por favor, ingrese un valor para la caja.", "Error", 
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    try {
+        // Intentamos convertir el texto a número
+        double valorCaja = Double.parseDouble(textoCaja);
+        
+        // 1. Modificamos el texto del JLabel
+        lblCaja.setText("Caja: $" + valorCaja);
+        
+        // (Opcional) Si tu clase Empresa guarda el dinero, se lo pasas aquí:
+        // this.myEmpresa.setCaja(valorCaja); 
+        
+        // 2. Activamos los botones del menú
+        cambiarEstadoBotones(true);
+        
+        // 3. Opcional: Desactivamos el campo y el botón de insertar para que no lo vuelvan a cambiar
+        txtCaja.setEnabled(false);
+        cmdCaja.setEnabled(false);
+        
+    } catch (NumberFormatException e) {
+        // Por si el usuario escribe letras en vez de números
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Por favor, ingrese un monto numérico válido.", "Error de formato", 
+            javax.swing.JOptionPane.ERROR_MESSAGE);
+    }  
+    }//GEN-LAST:event_cmdCajaActionPerformed
+    
+    private void cambiarEstadoBotones(boolean estado) {
+    btnVentas.setEnabled(estado);
+    btnAdmin.setEnabled(estado);
+    btnReportes.setEnabled(estado);
+}
+    
     /**
      * @param args the command line arguments
      */
@@ -212,10 +284,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnVentas;
+    private javax.swing.JButton cmdCaja;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCaja;
+    private javax.swing.JTextField txtCaja;
     // End of variables declaration//GEN-END:variables
 
 }

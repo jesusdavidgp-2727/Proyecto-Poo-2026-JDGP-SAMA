@@ -9,6 +9,12 @@ package servicio;
  * @author Usaurio
  */
 public class Salida {
+    //variables para estado
+    public static final String ESTADO_PROGRAMADA = "PROGRAMADA";
+    public static final String ESTADO_EN_VIAJE = "EN_VIAJE";
+    public static final String ESTADO_FINALIZADA = "FINALIZADA";
+    public static final String ESTADO_CANCELADA = "CANCELADA";
+    
     private String idSalida;
     private Ruta ruta;
     private Bus bus;
@@ -16,13 +22,14 @@ public class Salida {
     private String hora;
     private String estado;
     
+    
     public Salida(String idSalida,Ruta ruta,Bus bus,String fecha,String hora){
         this.idSalida = idSalida;
         this.ruta = ruta;
         this.bus = bus;
         this.fecha = fecha;
         this.hora = hora;
-        this.estado = "PROGRAMADA";
+        this.estado = ESTADO_PROGRAMADA;
     }
     public Salida() {
         this.idSalida = "";
@@ -30,7 +37,7 @@ public class Salida {
         this.bus = null;
         this.fecha = "";
         this.hora = "";
-        this.estado = "";
+        this.estado = ESTADO_PROGRAMADA;
     }
     
     public String getIdSalida() { return idSalida; }
@@ -49,11 +56,11 @@ public class Salida {
     public void setHora(String hora) { this.hora = hora; }
 
     public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public void setEstado(String estado) { this.estado = estado.trim().toUpperCase(); }
     
     public double precioFinal(){
         double pfinal = ruta.getTarifaBase();
-        if(bus.getTipoServicio().equalsIgnoreCase("EJECUTIVO")){
+        if (bus.getTipoServicio().equalsIgnoreCase(Bus.TIPO_EJECUTIVO)) {
             return pfinal*1.20;
         }else{
             return pfinal;
@@ -61,7 +68,7 @@ public class Salida {
     }
     
     public boolean gestionOcupacionSilla(int numSilla){
-        if(this.estado.equalsIgnoreCase("CANCELADA") || this.estado.equalsIgnoreCase("FINALIZADA")){
+        if(this.estado.equalsIgnoreCase(ESTADO_CANCELADA) || this.estado.equalsIgnoreCase(ESTADO_FINALIZADA)){
             return false;
         }else{
             int indice = numSilla - 1;

@@ -9,26 +9,39 @@ package servicio;
  * @author Usaurio
  */
 public class Bus {
+    //variables para los estados
+    public static final String TIPO_NORMAL = "NORMAL";
+    public static final String TIPO_EJECUTIVO = "EJECUTIVO";
+
+    public static final String ESTADO_DISPONIBLE = "DISPONIBLE";
+    public static final String ESTADO_EN_SERVICIO = "EN_SERVICIO";
+    public static final String ESTADO_MANTENIMIENTO = "MANTENIMIENTO";
+    
     private String placa;
     private String tipoServicio;
     private String estado;
     private Sillas[] mySillas;
     
-    public Bus(String placa,String tipoServicio,String estado){
-        this.placa = placa;
-        this.tipoServicio = tipoServicio;
-        this.estado = estado;
+    
+    public Bus(String placa, String tipoServicio, String estado) {
+        this.placa = placa.trim().toUpperCase();
+        this.tipoServicio = tipoServicio.trim().toUpperCase();
+        this.estado = estado.trim().toUpperCase();
+
         int capacidad;
-        if(this.tipoServicio.equalsIgnoreCase("EJECUTIVO")){
+        if (this.tipoServicio.equalsIgnoreCase(TIPO_EJECUTIVO)) {
             capacidad = 30;
-        }else{
+        } else {
             capacidad = 40;
         }
+
         this.mySillas = new Sillas[capacidad];
-        for(int i=0; i< capacidad; i++){
-            this.mySillas[i] = new Sillas(i+1, false);
+        for (int i = 0; i < capacidad; i++) {
+            this.mySillas[i] = new Sillas(i + 1, false);
         }
-        
+    }
+    public Bus(String placa, String tipoServicio) {
+        this(placa, tipoServicio, ESTADO_DISPONIBLE);
     }
     public Bus(){
         this.placa = "";
@@ -38,8 +51,9 @@ public class Bus {
     }
 
     public String getPlaca() {return placa;}
-    public void setPlaca(String placa) {this.placa = placa;}
-    
+    public void setPlaca(String placa) {
+        this.placa = placa.trim().toUpperCase();
+    }
     public String getTipoServicio() {return tipoServicio;}
     public void setTipoServicio(String tipoServicio) {this.tipoServicio = tipoServicio;}
     
