@@ -4,6 +4,8 @@
  */
 package pantalla;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import servicio.Ruta;
 import servicio.Salida;
 import servicio.Bus;
@@ -28,6 +30,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         llenarTablaSalidas();
         cargarCombosBuses();
         cargarCombosSalidas();
+        cargarCombosDestinos();
     }
   /*   private Empresa getEmpresa() {
         return myMenu.getApertura().getMyEmpresa();
@@ -42,31 +45,33 @@ public class FrmParametrizacion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         panelTabla = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        panelRutasPrincipal = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaRutas = new javax.swing.JTable();
-        panelFormularioRutas = new javax.swing.JPanel();
-        g = new javax.swing.JLabel();
-        txtDestino = new javax.swing.JTextField();
-        u = new javax.swing.JLabel();
-        txtOrigen = new javax.swing.JTextField();
-        m = new javax.swing.JLabel();
-        txtTarifaBase = new javax.swing.JTextField();
-        btnAnadir = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelBuses = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaBuses = new javax.swing.JTable();
+        panelAbajoBuses = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         u1 = new javax.swing.JLabel();
         txtPlacaBus = new javax.swing.JTextField();
         m1 = new javax.swing.JLabel();
         cmdAnadirBus = new javax.swing.JButton();
         comboTipoServicioBus = new javax.swing.JComboBox<>();
-        jPanel4 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        panelXBuses = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        cmbPlacas = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        cmbNuevoEstado = new javax.swing.JComboBox<>();
+        cmdActualizarBus = new javax.swing.JButton();
+        panelSalidas = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaSalidas = new javax.swing.JTable();
+        PanelAbajoSalidas = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         m2 = new javax.swing.JLabel();
         cmdAnadirSalida = new javax.swing.JButton();
@@ -77,9 +82,44 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         comboBusSalida = new javax.swing.JComboBox<>();
         calendarFechaSalida = new de.wannawork.jcalendar.JCalendarComboBox();
         jLabel1 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        panelXSalidas = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        cmbActualizarSalidas = new javax.swing.JButton();
+        panelRutasPrincipal = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaRutas = new javax.swing.JTable();
+        panelAbajoRuta = new javax.swing.JPanel();
+        panelFormularioRutas = new javax.swing.JPanel();
+        g = new javax.swing.JLabel();
+        u = new javax.swing.JLabel();
+        txtTiempoEst = new javax.swing.JTextField();
+        m = new javax.swing.JLabel();
+        txtTarifaBase = new javax.swing.JTextField();
+        btnAnadirRuta = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cmbDestino = new javax.swing.JComboBox<>();
+        panelXRuta = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtDestinoN = new javax.swing.JTextField();
+        txtNuevaTarifa = new javax.swing.JTextField();
+        cmdActualizarRuta = new javax.swing.JButton();
+        cmbDestinoN = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        cmbRutacg = new javax.swing.JComboBox<>();
         panelMensaje = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtMensajes = new javax.swing.JTextArea();
+
+        jLabel4.setText("jLabel4");
+
+        jButton2.setText("jButton2");
+
+        jLabel9.setText("jLabel9");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Parametrizacion del Sistema");
@@ -88,93 +128,9 @@ public class FrmParametrizacion extends javax.swing.JFrame {
 
         jTabbedPane2.setPreferredSize(new java.awt.Dimension(966, 100));
 
-        panelRutasPrincipal.setLayout(new java.awt.BorderLayout());
+        panelBuses.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(100, 100));
-
-        tablaRutas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Codigo", "Origen", "Destino", "Tarifa Base"
-            }
-        ));
-        jScrollPane1.setViewportView(tablaRutas);
-
-        panelRutasPrincipal.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        panelFormularioRutas.setPreferredSize(new java.awt.Dimension(300, 100));
-
-        g.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-        g.setText("destino");
-
-        txtDestino.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-
-        u.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-        u.setText("Origen");
-
-        txtOrigen.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-
-        m.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-        m.setText("tarifa base");
-
-        txtTarifaBase.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
-
-        btnAnadir.setFont(new java.awt.Font("Perpetua Titling MT", 0, 14)); // NOI18N
-        btnAnadir.setText("añadir");
-        btnAnadir.addActionListener(this::btnAnadirActionPerformed);
-
-        javax.swing.GroupLayout panelFormularioRutasLayout = new javax.swing.GroupLayout(panelFormularioRutas);
-        panelFormularioRutas.setLayout(panelFormularioRutasLayout);
-        panelFormularioRutasLayout.setHorizontalGroup(
-            panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFormularioRutasLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(g)
-                .addGap(18, 18, 18)
-                .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(u)
-                .addGap(18, 18, 18)
-                .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(m)
-                .addGap(18, 18, 18)
-                .addComponent(txtTarifaBase, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                .addGap(114, 114, 114)
-                .addComponent(btnAnadir)
-                .addGap(130, 130, 130))
-        );
-        panelFormularioRutasLayout.setVerticalGroup(
-            panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFormularioRutasLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(g)
-                    .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(u)
-                    .addComponent(txtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m))
-                .addContainerGap(36, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioRutasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTarifaBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
-        );
-
-        panelRutasPrincipal.add(panelFormularioRutas, java.awt.BorderLayout.PAGE_END);
-
-        jTabbedPane2.addTab("Rutas", panelRutasPrincipal);
-
-        jPanel1.setLayout(new java.awt.BorderLayout());
-
+        tablaBuses.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         tablaBuses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -188,7 +144,9 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaBuses);
 
-        jPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        panelBuses.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        panelAbajoBuses.setLayout(new javax.swing.BoxLayout(panelAbajoBuses, javax.swing.BoxLayout.Y_AXIS));
 
         u1.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         u1.setText("placa");
@@ -202,45 +160,118 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         cmdAnadirBus.setText("añadir");
         cmdAnadirBus.addActionListener(this::cmdAnadirBusActionPerformed);
 
+        comboTipoServicioBus.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         comboTipoServicioBus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboTipoServicioBus.addActionListener(this::comboTipoServicioBusActionPerformed);
+
+        jLabel11.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel11.setText("creador de buses");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(u1)
-                .addGap(18, 18, 18)
-                .addComponent(txtPlacaBus, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
-                .addComponent(m1)
-                .addGap(18, 18, 18)
-                .addComponent(comboTipoServicioBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
-                .addComponent(cmdAnadirBus)
-                .addGap(144, 144, 144))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(u1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPlacaBus, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97)
+                        .addComponent(m1)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboTipoServicioBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(cmdAnadirBus))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(316, 316, 316)
+                        .addComponent(jLabel11)))
+                .addContainerGap(630, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(11, 11, 11)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPlacaBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(m1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboTipoServicioBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(u1)
                     .addComponent(cmdAnadirBus, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.SOUTH);
+        panelAbajoBuses.add(jPanel2);
 
-        jTabbedPane2.addTab("Buses", jPanel1);
+        jLabel12.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel12.setText("Configuracion de buses");
 
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        jLabel13.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel13.setText("placa");
 
+        cmbPlacas.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        cmbPlacas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPlacas.addActionListener(this::cmbPlacasActionPerformed);
+
+        jLabel14.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel14.setText("estado");
+
+        cmbNuevoEstado.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        cmbNuevoEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cmdActualizarBus.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        cmdActualizarBus.setText("actualizar");
+        cmdActualizarBus.addActionListener(this::cmdActualizarBusActionPerformed);
+
+        javax.swing.GroupLayout panelXBusesLayout = new javax.swing.GroupLayout(panelXBuses);
+        panelXBuses.setLayout(panelXBusesLayout);
+        panelXBusesLayout.setHorizontalGroup(
+            panelXBusesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXBusesLayout.createSequentialGroup()
+                .addGroup(panelXBusesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelXBusesLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101)
+                        .addComponent(jLabel14)
+                        .addGap(41, 41, 41)
+                        .addComponent(cmbNuevoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(cmdActualizarBus))
+                    .addGroup(panelXBusesLayout.createSequentialGroup()
+                        .addGap(334, 334, 334)
+                        .addComponent(jLabel12)))
+                .addContainerGap(668, Short.MAX_VALUE))
+        );
+        panelXBusesLayout.setVerticalGroup(
+            panelXBusesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXBusesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addGroup(panelXBusesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(cmbPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbNuevoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmdActualizarBus))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
+        panelAbajoBuses.add(panelXBuses);
+
+        panelBuses.add(panelAbajoBuses, java.awt.BorderLayout.SOUTH);
+
+        jTabbedPane2.addTab("Buses", panelBuses);
+
+        panelSalidas.setLayout(new java.awt.BorderLayout());
+
+        tablaSalidas.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         tablaSalidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -254,7 +285,9 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tablaSalidas);
 
-        jPanel4.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+        panelSalidas.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        PanelAbajoSalidas.setLayout(new javax.swing.BoxLayout(PanelAbajoSalidas, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel6.setPreferredSize(new java.awt.Dimension(635, 100));
 
@@ -273,64 +306,309 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         u2.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         u2.setText("RUTA");
 
+        comboRutaSalida.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         comboRutaSalida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        comboBusSalida.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         comboBusSalida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         jLabel1.setText("Fecha");
+
+        jLabel15.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel15.setText("creacion de salidas");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(g2)
-                .addGap(18, 18, 18)
-                .addComponent(txtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addComponent(calendarFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(u2)
-                .addGap(18, 18, 18)
-                .addComponent(comboRutaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(m2)
-                .addGap(18, 18, 18)
-                .addComponent(comboBusSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                .addComponent(cmdAnadirSalida)
-                .addGap(144, 144, 144))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(g2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1)
+                        .addGap(34, 34, 34)
+                        .addComponent(calendarFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(u2)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboRutaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(m2)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboBusSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(cmdAnadirSalida))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(417, 417, 417)
+                        .addComponent(jLabel15)))
+                .addContainerGap(477, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(g2)
-                    .addComponent(txtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(u2)
-                    .addComponent(comboRutaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(m2)
-                    .addComponent(comboBusSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmdAnadirSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(calendarFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(g2)
+                        .addComponent(txtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(u2)
+                        .addComponent(comboRutaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(m2)
+                        .addComponent(comboBusSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmdAnadirSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        PanelAbajoSalidas.add(jPanel6);
+
+        panelXSalidas.setMaximumSize(new java.awt.Dimension(32767, 100));
+        panelXSalidas.setMinimumSize(new java.awt.Dimension(400, 100));
+        panelXSalidas.setPreferredSize(new java.awt.Dimension(400, 100));
+
+        jLabel16.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel16.setText("CONfiguracion de salidas");
+
+        cmbActualizarSalidas.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        cmbActualizarSalidas.setText("ACTUALIZAR");
+
+        javax.swing.GroupLayout panelXSalidasLayout = new javax.swing.GroupLayout(panelXSalidas);
+        panelXSalidas.setLayout(panelXSalidasLayout);
+        panelXSalidasLayout.setHorizontalGroup(
+            panelXSalidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXSalidasLayout.createSequentialGroup()
+                .addGroup(panelXSalidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelXSalidasLayout.createSequentialGroup()
+                        .addGap(409, 409, 409)
+                        .addComponent(jLabel16))
+                    .addGroup(panelXSalidasLayout.createSequentialGroup()
+                        .addGap(443, 443, 443)
+                        .addComponent(cmbActualizarSalidas)))
+                .addContainerGap(674, Short.MAX_VALUE))
+        );
+        panelXSalidasLayout.setVerticalGroup(
+            panelXSalidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXSalidasLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel16)
+                .addGap(18, 18, 18)
+                .addComponent(cmbActualizarSalidas)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        PanelAbajoSalidas.add(panelXSalidas);
+
+        panelSalidas.add(PanelAbajoSalidas, java.awt.BorderLayout.SOUTH);
+
+        jTabbedPane2.addTab("Salidas", panelSalidas);
+
+        panelRutasPrincipal.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane1.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        tablaRutas.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        tablaRutas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Codigo", "Origen", "Destino", "Tiempo Estimado", "Tarifa Base"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaRutas);
+
+        panelRutasPrincipal.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        panelAbajoRuta.setLayout(new javax.swing.BoxLayout(panelAbajoRuta, javax.swing.BoxLayout.Y_AXIS));
+
+        panelFormularioRutas.setPreferredSize(new java.awt.Dimension(300, 100));
+
+        g.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        g.setText("destino");
+
+        u.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        u.setText("Tiempo estimado");
+
+        txtTiempoEst.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        txtTiempoEst.addActionListener(this::txtTiempoEstActionPerformed);
+
+        m.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        m.setText("tarifa base");
+
+        txtTarifaBase.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+
+        btnAnadirRuta.setFont(new java.awt.Font("Perpetua Titling MT", 0, 14)); // NOI18N
+        btnAnadirRuta.setText("añadir");
+        btnAnadirRuta.addActionListener(this::btnAnadirRutaActionPerformed);
+
+        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel2.setText("Creador de rutas");
+
+        cmbDestino.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        cmbDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout panelFormularioRutasLayout = new javax.swing.GroupLayout(panelFormularioRutas);
+        panelFormularioRutas.setLayout(panelFormularioRutasLayout);
+        panelFormularioRutasLayout.setHorizontalGroup(
+            panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormularioRutasLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(g)
+                .addGap(18, 18, 18)
+                .addComponent(cmbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(u)
+                .addGap(18, 18, 18)
+                .addComponent(txtTiempoEst, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(m)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtTarifaBase, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addGap(114, 114, 114)
+                .addComponent(btnAnadirRuta)
+                .addGap(130, 130, 130))
+            .addGroup(panelFormularioRutasLayout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelFormularioRutasLayout.setVerticalGroup(
+            panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormularioRutasLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(g)
+                    .addComponent(u)
+                    .addComponent(txtTiempoEst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(m)
+                    .addComponent(txtTarifaBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAnadirRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel6, java.awt.BorderLayout.PAGE_END);
+        panelAbajoRuta.add(panelFormularioRutas);
 
-        jTabbedPane2.addTab("Salidas", jPanel4);
+        panelXRuta.setMaximumSize(new java.awt.Dimension(32767, 100));
+        panelXRuta.setMinimumSize(new java.awt.Dimension(400, 100));
+        panelXRuta.setPreferredSize(new java.awt.Dimension(400, 100));
+
+        jLabel3.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel3.setText("configuarcion rutas");
+
+        jLabel5.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel5.setText("destino");
+
+        jLabel6.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel6.setText("Nueva tarifa");
+
+        txtDestinoN.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+
+        txtNuevaTarifa.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        txtNuevaTarifa.setMinimumSize(new java.awt.Dimension(100, 21));
+        txtNuevaTarifa.setPreferredSize(new java.awt.Dimension(100, 21));
+
+        cmdActualizarRuta.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        cmdActualizarRuta.setText("actualizar");
+        cmdActualizarRuta.addActionListener(this::cmdActualizarRutaActionPerformed);
+
+        cmbDestinoN.setFont(new java.awt.Font("Perpetua Titling MT", 0, 14)); // NOI18N
+        cmbDestinoN.setText("Crear");
+        cmbDestinoN.addActionListener(this::cmbDestinoNActionPerformed);
+
+        jLabel8.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel8.setText("Crear nuevo destino");
+
+        jLabel7.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel7.setText("Actualizar tarifa base");
+
+        jLabel10.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        jLabel10.setText("Ruta");
+
+        cmbRutacg.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
+        cmbRutacg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout panelXRutaLayout = new javax.swing.GroupLayout(panelXRuta);
+        panelXRuta.setLayout(panelXRutaLayout);
+        panelXRutaLayout.setHorizontalGroup(
+            panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXRutaLayout.createSequentialGroup()
+                .addGroup(panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelXRutaLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panelXRutaLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDestinoN, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(51, 51, 51)
+                        .addComponent(cmbDestinoN)
+                        .addGap(184, 184, 184)
+                        .addGroup(panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelXRutaLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbRutacg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNuevaTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(cmdActualizarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelXRutaLayout.createSequentialGroup()
+                        .addGap(391, 391, 391)
+                        .addComponent(jLabel3)))
+                .addContainerGap(257, Short.MAX_VALUE))
+        );
+        panelXRutaLayout.setVerticalGroup(
+            panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXRutaLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtDestinoN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbDestinoN)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNuevaTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmdActualizarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(cmbRutacg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
+        );
+
+        panelAbajoRuta.add(panelXRuta);
+
+        panelRutasPrincipal.add(panelAbajoRuta, java.awt.BorderLayout.SOUTH);
+
+        jTabbedPane2.addTab("Rutas", panelRutasPrincipal);
 
         javax.swing.GroupLayout panelTablaLayout = new javax.swing.GroupLayout(panelTabla);
         panelTabla.setLayout(panelTablaLayout);
         panelTablaLayout.setHorizontalGroup(
             panelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addGap(0, 1271, Short.MAX_VALUE)
             .addGroup(panelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelTablaLayout.createSequentialGroup()
                     .addContainerGap()
@@ -382,9 +660,9 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 16, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(panelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -393,50 +671,57 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
+    private void btnAnadirRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirRutaActionPerformed
         try {
         // 1. Validar que los campos no estén vacíos
-        if(txtOrigen.getText().isEmpty() || txtDestino.getText().isEmpty() || txtTarifaBase.getText().isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Por favor llene todos los campos.");
+        if(txtTiempoEst.getText().isEmpty() || cmbDestino.getSelectedItem()==null || txtTarifaBase.getText().isEmpty()) {
+            mostrarMensaje("Complete por favor todos los campos.");
             return;
         }
 
         // 2. Capturar los datos de los JTextFields
         String cod = myMenu.getMyEmpresa().generarCodigoRuta();
-        String ori = txtOrigen.getText();
-        String des = txtDestino.getText();
+        String test = txtTiempoEst.getText();
+        String des = cmbDestino.getSelectedItem().toString();
         double tar = Double.parseDouble(txtTarifaBase.getText());
-
+        
+        for (Ruta r : myMenu.getMyEmpresa().getListaRutas()) {
+            if (r.getDestino().equalsIgnoreCase(des)) {
+                mostrarMensaje("No se pudo crear la ruta: Ya existe una ruta asignada hacia " + des);
+                javax.swing.JOptionPane.showMessageDialog(this, "Error: Ya existe una ruta con este destino.");
+                return;
+            }
+        }
+        
         // 3. Crear el objeto Ruta y guardarlo en la lista de la empresa
-        Ruta nueva = new Ruta(cod, ori, des, tar);
+        Ruta nueva = new Ruta(cod,des, test, tar);
         myMenu.getMyEmpresa().registrarRuta(nueva); // Asegúrate que getListaRutas() devuelva la lista
 
         // 4. Limpiar los campos para la siguiente entrada
-        txtOrigen.setText("");
-        txtDestino.setText("");
+        txtTiempoEst.setText("");
         txtTarifaBase.setText("");
 
         // 5. Actualizar la tabla para que se vea lo nuevo
         llenarTablaRutas();
         cargarCombosSalidas();
-        mostrarMensaje("Ruta con codigo" + cod + " creada correctamente.");
+        verificarEstadoSalidasEnTiempoReal(); // Esto refrescará las tablas de forma segura
+        mostrarMensaje("Ruta con codigo " + cod + " hacia " + des + " creada correctamente.");
 
     } catch (NumberFormatException e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Error: La tarifa debe ser un número válido.");
     } catch (Exception e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
     }
-    }//GEN-LAST:event_btnAnadirActionPerformed
+    }//GEN-LAST:event_btnAnadirRutaActionPerformed
 
     private void cmdAnadirBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAnadirBusActionPerformed
         try {
@@ -464,6 +749,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         
         llenarTablaBuses();
         cargarCombosSalidas();
+        cargarCombosBuses();
         txtPlacaBus.setText("");
         mostrarMensaje("Bus con placa " + placa + " creado correctamente.");
     } catch (Exception e) {
@@ -551,6 +837,103 @@ public class FrmParametrizacion extends javax.swing.JFrame {
     private void comboTipoServicioBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoServicioBusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboTipoServicioBusActionPerformed
+
+    private void txtTiempoEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTiempoEstActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTiempoEstActionPerformed
+
+    private void cmbDestinoNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDestinoNActionPerformed
+        String nuevoDestino = txtDestinoN.getText().trim();
+    
+        if (nuevoDestino.isEmpty()) {
+            mostrarMensaje("Por favor, ingrese un nombre de destino.");
+            return;
+        }
+    
+        boolean registrado = myMenu.getMyEmpresa().registrarNuevoDestino(nuevoDestino);
+    
+        if (registrado) {
+            cargarCombosDestinos(); // Actualiza el JComboBox principal de rutas automáticamente
+            txtDestinoN.setText("");
+            mostrarMensaje("Destino '" + nuevoDestino + "' agregado con éxito.");
+        } else {
+            mostrarMensaje("Error: El destino '" + nuevoDestino + "' ya se encuentra registrado.");
+        }
+    }//GEN-LAST:event_cmbDestinoNActionPerformed
+
+    private void cmdActualizarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdActualizarRutaActionPerformed
+    try {
+        if (cmbRutacg.getSelectedItem() == null || txtNuevaTarifa.getText().trim().isEmpty()) {
+            mostrarMensaje("Seleccione una ruta e ingrese la nueva tarifa.");
+            return;
+        }
+        
+        String codigoRuta = cmbRutacg.getSelectedItem().toString();
+        double nuevaTarifa = Double.parseDouble(txtNuevaTarifa.getText().trim());
+        
+        if (nuevaTarifa < 0) {
+            mostrarMensaje("Error: La tarifa no puede ser un valor negativo.");
+            return;
+        }
+        
+        // Buscamos la ruta usando el método nativo de tu clase Empresa
+        Ruta rutaAEditar = myMenu.getMyEmpresa().buscarRutaCodigo(codigoRuta);
+        
+        if (rutaAEditar != null) {
+            // Se cambia el valor en caliente dentro del objeto real
+            // (Asegúrate de tener el método setTarifaBase en la clase Ruta)
+            rutaAEditar.setTarifaBase(nuevaTarifa); 
+            
+            // Refrescamos la UI
+            llenarTablaRutas();
+            txtNuevaTarifa.setText("");
+            mostrarMensaje("La ruta " + codigoRuta + " ha actualizado su tarifa base a: $" + nuevaTarifa);
+        } else {
+            mostrarMensaje("Error: No se encontró la ruta seleccionada.");
+        }
+        
+    } catch (NumberFormatException e) {
+        mostrarMensaje("Error: Ingrese un valor numérico válido para la tarifa.");
+    } catch (Exception e) {
+        mostrarMensaje("Error al actualizar la ruta: " + e.getMessage());
+    }
+    }//GEN-LAST:event_cmdActualizarRutaActionPerformed
+
+    private void cmbPlacasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPlacasActionPerformed
+        actualizarComboEstadosSegunBus();
+    }//GEN-LAST:event_cmbPlacasActionPerformed
+
+    private void cmdActualizarBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdActualizarBusActionPerformed
+    try {
+        if (cmbPlacas.getSelectedItem() == null || cmbNuevoEstado.getSelectedItem() == null) {
+            mostrarMensaje("Por favor, seleccione una placa y un nuevo estado.");
+            return;
+        }
+        
+        String placa = cmbPlacas.getSelectedItem().toString();
+        String nuevoEstado = cmbNuevoEstado.getSelectedItem().toString();
+        
+        // 1. Buscar el bus
+        Bus busAEditar = myMenu.getMyEmpresa().buscarBusPlaca(placa);
+        
+        if (busAEditar != null) {
+            // 2. Cambiar el estado en el objeto real (Asegúrate de que exista setEstado en tu clase Bus)
+            busAEditar.setEstado(nuevoEstado); 
+            
+            // 3. Refrescar los componentes visuales de la UI
+            llenarTablaBuses();       // Actualiza la tabla de buses para mostrar el nuevo estado
+            cargarCombosSalidas();    // Si filtra los buses de las salidas, refresca el combo de allá
+            actualizarComboEstadosSegunBus(); // Modifica las opciones del combo actual
+            
+            mostrarMensaje("El bus con placa " + placa + " cambio su estado a: " + nuevoEstado);
+        } else {
+            mostrarMensaje("Error: No se encontró el bus seleccionado.");
+        }
+        
+    } catch (Exception e) {
+        mostrarMensaje("Error al actualizar estado del bus: " + e.getMessage());
+    }
+    }//GEN-LAST:event_cmdActualizarBusActionPerformed
     
     private void llenarTablaRutas() {
         DefaultTableModel modelo = (DefaultTableModel) tablaRutas.getModel();
@@ -561,7 +944,8 @@ public class FrmParametrizacion extends javax.swing.JFrame {
             Object[] fila = {
                 r.getCodigoRuta(), // Verifica si el método es getCodigoRuta() o getCodigo()
                 r.getOrigen(), 
-                r.getDestino(), 
+                r.getDestino(),
+                r.getTiempoEst(),
                 r.getTarifaBase()
         };
         modelo.addRow(fila);
@@ -601,18 +985,45 @@ public class FrmParametrizacion extends javax.swing.JFrame {
             modelo.addRow(fila);
         }
     }
-    
     private void cargarCombosBuses() {
+        cmbPlacas.removeAllItems();
+        for (Bus b : myMenu.getMyEmpresa().getListaBuses()) {
+            cmbPlacas.addItem(b.getPlaca());
+        }
         comboTipoServicioBus.removeAllItems();
         comboTipoServicioBus.addItem(Bus.TIPO_NORMAL);
         comboTipoServicioBus.addItem(Bus.TIPO_EJECUTIVO);
-
-        //comboEstadoBus.removeAllItems();
-        //comboEstadoBus.addItem(Bus.ESTADO_DISPONIBLE);
-        //comboEstadoBus.addItem(Bus.ESTADO_EN_SERVICIO);
-        //comboEstadoBus.addItem(Bus.ESTADO_MANTENIMIENTO);
+        
+        actualizarComboEstadosSegunBus();
     }
     
+    private void actualizarComboEstadosSegunBus() {
+       if (cmbPlacas.getSelectedItem() == null) return;
+       String placaSeleccionada = cmbPlacas.getSelectedItem().toString();
+       Bus busSeleccionado = myMenu.getMyEmpresa().buscarBusPlaca(placaSeleccionada);
+       if (busSeleccionado != null) {
+        cmbNuevoEstado.removeAllItems();
+        String estadoActual = busSeleccionado.getEstado();
+        
+        // REGLA DE NEGOCIO DINÁMICA:
+        if (estadoActual.equalsIgnoreCase(Bus.ESTADO_MANTENIMIENTO)) {
+            // Si está en mantenimiento, solo puede pasar a Disponible
+            cmbNuevoEstado.addItem(Bus.ESTADO_DISPONIBLE);
+        } 
+        else if (estadoActual.equalsIgnoreCase("EN VIAJE") || estadoActual.equalsIgnoreCase("EN SERVICIO")) {
+            // Si está viajando, al terminar puede quedar Disponible o ir a Taller
+            cmbNuevoEstado.addItem(Bus.ESTADO_DISPONIBLE);
+            cmbNuevoEstado.addItem(Bus.ESTADO_MANTENIMIENTO);
+        } 
+        else {
+            // Si está Disponible (por defecto), puede pasar a mantenimiento
+            // Nota: a "En Viaje" debería pasar automáticamente al crear una salida, no a mano.
+            cmbNuevoEstado.addItem(Bus.ESTADO_MANTENIMIENTO);
+        }
+    }
+    }
+    
+
     private void cargarCombosSalidas() {
         comboRutaSalida.removeAllItems();
         for (Ruta r : myMenu.getMyEmpresa().getListaRutas()) {
@@ -623,40 +1034,92 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         for (Bus b : myMenu.getMyEmpresa().getListaBuses()) {
             comboBusSalida.addItem(b.getPlaca());
         }
-
+        
+        cmbRutacg.removeAllItems();
+        for (Ruta r : myMenu.getMyEmpresa().getListaRutas()) {
+            cmbRutacg.addItem(r.getCodigoRuta());
+        }
         //comboEstadoSalida.removeAllItems();
         //comboEstadoSalida.addItem(Salida.ESTADO_PROGRAMADA);
         //comboEstadoSalida.addItem(Salida.ESTADO_EN_VIAJE);
         //comboEstadoSalida.addItem(Salida.ESTADO_FINALIZADA);
         //comboEstadoSalida.addItem(Salida.ESTADO_CANCELADA);
     }
-    
+    private void cargarCombosDestinos() {
+        cmbDestino.removeAllItems();
+        for (String d : myMenu.getMyEmpresa().getListaDestinos()) {
+            cmbDestino.addItem(d);
+        }
+    }
     private String normalizarHora(String textoHora) {
-    String horaLimpia = textoHora.trim();
+        String horaLimpia = textoHora.trim();
 
-    if (horaLimpia.matches("\\d{1,2}")) {
-        int hora = Integer.parseInt(horaLimpia);
+        if (horaLimpia.matches("\\d{1,2}")) {
+            int hora = Integer.parseInt(horaLimpia);
 
-        if (hora < 0 || hora > 23) {
-            return null;
+            if (hora < 0 || hora > 23) {
+                return null;
+            }
+
+            return String.format("%02d:00", hora);
         }
 
-        return String.format("%02d:00", hora);
-    }
+        if (horaLimpia.matches("\\d{1,2}:\\d{1,2}")) {
+            String[] partes = horaLimpia.split(":");
+            int hora = Integer.parseInt(partes[0]);
+            int minutos = Integer.parseInt(partes[1]);
 
-    if (horaLimpia.matches("\\d{1,2}:\\d{1,2}")) {
-        String[] partes = horaLimpia.split(":");
-        int hora = Integer.parseInt(partes[0]);
-        int minutos = Integer.parseInt(partes[1]);
+            if (hora < 0 || hora > 23 || minutos < 0 || minutos > 59) {
+                return null;
+            }
 
-        if (hora < 0 || hora > 23 || minutos < 0 || minutos > 59) {
-            return null;
+            return String.format("%02d:%02d", hora, minutos);
         }
 
-        return String.format("%02d:%02d", hora, minutos);
+        return null;
     }
-
-    return null;
+    
+    private void verificarEstadoSalidasEnTiempoReal() {
+    // Obtenemos la hora exacta en la que se encuentra la computadora del usuario
+    LocalTime horaActualPC = LocalTime.now();
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+    
+    mostrarMensaje("Ejecutando control de tráfico automático (" + horaActualPC.format(formato) + ")...");
+    
+    for (Salida s : myMenu.getMyEmpresa().getListaSalidas()) {
+        try {
+            // 1. Convertir la hora de salida del bus (String) a LocalTime
+            LocalTime horaSalida = LocalTime.parse(s.getHora());
+            
+            // 2. Extraer las horas estimadas de viaje desde la ruta asignada
+            int horasDeViaje = Integer.parseInt(s.getRuta().getTiempoEst());
+            
+            // 3. Calcular matemáticamente la hora exacta de destino
+            LocalTime horaLlegadaEstimada = horaSalida.plusHours(horasDeViaje);
+            
+            // 4. Evaluación lógica temporal:
+            if (horaActualPC.isAfter(horaSalida) && horaActualPC.isBefore(horaLlegadaEstimada)) {
+                // El reloj de la PC está entre la salida y la llegada: El bus está viajando
+                s.getBus().setEstado("EN VIAJE"); 
+                s.setEstado("EN VIAJE"); // Si tu clase Salida maneja estados individuales
+            } 
+            else if (horaActualPC.isAfter(horaLlegadaEstimada)) {
+                // El tiempo estimado ya se cumplió o se venció: El viaje concluyó
+                if (s.getBus().getEstado().equalsIgnoreCase("EN VIAJE")) {
+                    s.getBus().setEstado(Bus.ESTADO_DISPONIBLE); // Libera el bus automáticamente
+                    mostrarMensaje("El Bus [" + s.getBus().getPlaca() + "] completó su trayecto y ya está DISPONIBLE.");
+                }
+                s.setEstado("FINALIZADA");
+            }
+        } catch (Exception ex) {
+            // Previene fallos en caso de que alguna hora no cumpla el patrón "HH:mm"
+            System.out.println("No se pudo procesar la salida " + s.getIdSalida() + ": " + ex.getMessage());
+        }
+    }
+    
+    // Sincronizar las tablas visuales con los nuevos estados calculados
+    llenarTablaBuses();
+    llenarTablaSalidas();
 }
     
     private void mostrarMensaje(String mensaje) {
@@ -665,8 +1128,17 @@ public class FrmParametrizacion extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnadir;
+    private javax.swing.JPanel PanelAbajoSalidas;
+    private javax.swing.JButton btnAnadirRuta;
     private de.wannawork.jcalendar.JCalendarComboBox calendarFechaSalida;
+    private javax.swing.JButton cmbActualizarSalidas;
+    private javax.swing.JComboBox<String> cmbDestino;
+    private javax.swing.JButton cmbDestinoN;
+    private javax.swing.JComboBox<String> cmbNuevoEstado;
+    private javax.swing.JComboBox<String> cmbPlacas;
+    private javax.swing.JComboBox<String> cmbRutacg;
+    private javax.swing.JButton cmdActualizarBus;
+    private javax.swing.JButton cmdActualizarRuta;
     private javax.swing.JButton cmdAnadirBus;
     private javax.swing.JButton cmdAnadirSalida;
     private javax.swing.JComboBox<String> comboBusSalida;
@@ -674,10 +1146,24 @@ public class FrmParametrizacion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboTipoServicioBus;
     private javax.swing.JLabel g;
     private javax.swing.JLabel g2;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -687,19 +1173,27 @@ public class FrmParametrizacion extends javax.swing.JFrame {
     private javax.swing.JLabel m;
     private javax.swing.JLabel m1;
     private javax.swing.JLabel m2;
+    private javax.swing.JPanel panelAbajoBuses;
+    private javax.swing.JPanel panelAbajoRuta;
+    private javax.swing.JPanel panelBuses;
     private javax.swing.JPanel panelFormularioRutas;
     private javax.swing.JPanel panelMensaje;
     private javax.swing.JPanel panelRutasPrincipal;
+    private javax.swing.JPanel panelSalidas;
     private javax.swing.JPanel panelTabla;
+    private javax.swing.JPanel panelXBuses;
+    private javax.swing.JPanel panelXRuta;
+    private javax.swing.JPanel panelXSalidas;
     private javax.swing.JTable tablaBuses;
     private javax.swing.JTable tablaRutas;
     private javax.swing.JTable tablaSalidas;
-    private javax.swing.JTextField txtDestino;
+    private javax.swing.JTextField txtDestinoN;
     private javax.swing.JTextField txtHoraSalida;
     private javax.swing.JTextArea txtMensajes;
-    private javax.swing.JTextField txtOrigen;
+    private javax.swing.JTextField txtNuevaTarifa;
     private javax.swing.JTextField txtPlacaBus;
     private javax.swing.JTextField txtTarifaBase;
+    private javax.swing.JTextField txtTiempoEst;
     private javax.swing.JLabel u;
     private javax.swing.JLabel u1;
     private javax.swing.JLabel u2;

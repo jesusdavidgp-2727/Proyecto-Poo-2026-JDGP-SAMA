@@ -224,27 +224,28 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }
     
     try {
-        // Intentamos convertir el texto a número
+        //convertir el texto a número
         double valorCaja = Double.parseDouble(textoCaja);
         
-        // 1. Modificamos el texto del JLabel
+        //Modificamos el texto del JLabel
         lblCaja.setText("Caja: $" + valorCaja);
         
-        // (Opcional) Si tu clase Empresa guarda el dinero, se lo pasas aquí:
-        // this.myEmpresa.setCaja(valorCaja); 
+        // Guardamos el dinero
+        this.myEmpresa.setDineroEnCaja(valorCaja); 
         
-        // 2. Activamos los botones del menú
+        //Activamos los botones del menú
         cambiarEstadoBotones(true);
         
-        // 3. Opcional: Desactivamos el campo y el botón de insertar para que no lo vuelvan a cambiar
+        //Desactivamos el campo y el botón de insertar para que no lo vuelvan a cambiar
         txtCaja.setEnabled(false);
         cmdCaja.setEnabled(false);
         
     } catch (NumberFormatException e) {
-        // Por si el usuario escribe letras en vez de números
+        //si el usuario escribe letras en vez de números
         javax.swing.JOptionPane.showMessageDialog(this, 
             "Por favor, ingrese un monto numérico válido.", "Error de formato", 
             javax.swing.JOptionPane.ERROR_MESSAGE);
+            txtCaja.setText("");
     }  
     }//GEN-LAST:event_cmdCajaActionPerformed
     

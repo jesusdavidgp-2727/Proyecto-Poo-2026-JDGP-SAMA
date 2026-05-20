@@ -13,20 +13,21 @@ public class Empresa {
     private ArrayList<Bus> listaBuses;
     private ArrayList<Ruta> listaRutas;
     private ArrayList<Salida> listaSalidas;
+    private ArrayList<String> listaDestinosAnadidos = new ArrayList<>();
     private double dineroEnCaja;
     
     public Empresa(){
         this.listaBuses = new ArrayList<>();
         this.listaRutas = new ArrayList<>();
         this.listaSalidas = new ArrayList<>();
-        
+        this.dineroEnCaja = 0.0;
         cargarDatosIniciales();
     }
     private void cargarDatosIniciales(){
-        Ruta r01 = new Ruta("R01", "Cucuta", "Bucaramanga", 80000);
-        Ruta r02 = new Ruta("R02", "Cucuta", "Bogota", 160000);
-        Ruta r03 = new Ruta("R03", "Cucuta", "Medellin", 180000);
-        Ruta r04 = new Ruta("R04", "Cucuta", "Cartagena", 220000);
+        Ruta r01 = new Ruta("R01","Bucaramanga","6", 80000);
+        Ruta r02 = new Ruta("R02","Bogota","15", 160000);
+        Ruta r03 = new Ruta("R03","Medellin","15", 180000);
+        Ruta r04 = new Ruta("R04","Cartagena","18", 220000);
         listaRutas.add(r01); listaRutas.add(r02); listaRutas.add(r03); listaRutas.add(r04);
         
         Bus b101 = new Bus("KAA-101", Bus.TIPO_NORMAL, Bus.ESTADO_DISPONIBLE);
@@ -45,6 +46,11 @@ public class Empresa {
         listaSalidas.add(new Salida("S006", r03, b101, "17/03/2026", "18:00"));
         listaSalidas.add(new Salida("S007", r04, b303, "18/03/2026", "06:30"));
         listaSalidas.add(new Salida("S008", r04, b202, "18/03/2026", "19:30"));
+        
+        listaDestinosAnadidos.add("Bucaramanga");
+        listaDestinosAnadidos.add("Bogota");
+        listaDestinosAnadidos.add("Medellin");
+        listaDestinosAnadidos.add("Cartagena");
     }
     
     //Registrar cosas
@@ -78,7 +84,16 @@ public class Empresa {
         this.listaSalidas.add(nuevaSalida);
         return true;
     }
-    
+    public boolean registrarNuevoDestino(String destino) {
+        if (destino == null || destino.isBlank()) return false;
+        for (String d : listaDestinosAnadidos) {
+            if (d.equalsIgnoreCase(destino.trim())) {
+                return false; // Ya existe el destino
+            }
+        }
+        listaDestinosAnadidos.add(destino.trim());
+        return true;
+    }
     //Generacion automatica de codigos o id's
     public String generarCodigoRuta() {
         int mayor = 0;
@@ -146,11 +161,21 @@ public class Empresa {
     public ArrayList<Bus> getListaBuses() {return listaBuses;}
 
     public ArrayList<Salida> getListaSalidas() {return listaSalidas;}
-    //ToString
+    
+    public ArrayList<String> getListaDestinos() {return listaDestinosAnadidos;}
     public double getDineroEnCaja() { return dineroEnCaja; }
     public void setDineroEnCaja(double dineroEnCaja) { this.dineroEnCaja = dineroEnCaja; }
     public String registrarMetodo(){
         return "Venta";
+    }
+    //ToString
+    @Override
+    public String toString() {
+        return "=== REPORTE DE LA EMPRESA ===" +
+               "\nTotal Rutas: " + listaRutas.size() +
+               "\nTotal Buses: " + listaBuses.size() +
+               "\nTotal Salidas Programadas: " + listaSalidas.size() +
+               "\nDinero en Caja: $" + dineroEnCaja;
     }
 }
     

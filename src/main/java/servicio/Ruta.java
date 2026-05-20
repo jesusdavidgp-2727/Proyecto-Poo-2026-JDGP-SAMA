@@ -9,24 +9,35 @@ package servicio;
  * @author Usaurio
  */
 public class Ruta {
+    public static final String ORIGEN = "Cúcuta";
+    
     private String codigoRuta;
     private String origen;
     private String destino;
+    private String tiempoEst;
     private double tarifaBase;
     
-    public Ruta(String codigoRuta,String origen,String destino,double tarifaBase){
+    public Ruta(String codigoRuta,String destino,String tiempoEst,double tarifaBase){
         this.codigoRuta = codigoRuta;
         this.destino = destino;
-        this.origen = origen;
+        this.origen = ORIGEN;
+        this.tiempoEst = tiempoEst;
         this.tarifaBase = tarifaBase;
     }
     public Ruta(){
         this.codigoRuta = "";
         this.destino = "";
-        this.origen = "";
+        this.origen = ORIGEN;
+        this.tiempoEst = "";
         this.tarifaBase = 0.0;
     }
 
+    public String getTiempoEst() {
+        return tiempoEst;
+    }
+    public void setTiempoEst(String tiempoEst) {
+        this.tiempoEst = tiempoEst;
+    }
     public String getCodigoRuta() {
         return codigoRuta;
     }
@@ -36,9 +47,9 @@ public class Ruta {
     public String getOrigen() {
         return origen;
     }
-    public void setOrigen(String origen) {
+    /*public void setOrigen(String origen) {
         this.origen = origen;
-    }
+    }*/
     public String getDestino() {
         return destino;
     }
@@ -56,6 +67,7 @@ public class Ruta {
         return "\ncodigoRuta : "+this.codigoRuta+
                 "\norigen : "+this.origen+
                 "\ndestino : "+this.destino +
-                "\ntarifaBase : "+this.tarifaBase;
+                "\nTiempo Estimado : "+this.tiempoEst +
+                "\ntarifa Base : "+this.tarifaBase;
     }
 }
