@@ -379,6 +379,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
 
         cmbActualizarSalidas.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         cmbActualizarSalidas.setText("ACTUALIZAR");
+        cmbActualizarSalidas.addActionListener(this::cmbActualizarSalidasActionPerformed);
 
         javax.swing.GroupLayout panelXSalidasLayout = new javax.swing.GroupLayout(panelXSalidas);
         panelXSalidas.setLayout(panelXSalidasLayout);
@@ -458,6 +459,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
 
         cmbDestino.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         cmbDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbDestino.addActionListener(this::cmbDestinoActionPerformed);
 
         javax.swing.GroupLayout panelFormularioRutasLayout = new javax.swing.GroupLayout(panelFormularioRutas);
         panelFormularioRutas.setLayout(panelFormularioRutasLayout);
@@ -591,7 +593,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                     .addComponent(txtDestinoN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbDestinoN)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNuevaTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNuevaTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmdActualizarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(cmbRutacg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -684,7 +686,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         try {
         // 1. Validar que los campos no estén vacíos
         if(txtTiempoEst.getText().isEmpty() || cmbDestino.getSelectedItem()==null || txtTarifaBase.getText().isEmpty()) {
-            mostrarMensaje("Complete por favor todos los campos.");
+            mostrarMensaje("INFO","Complete por favor todos los campos.");
             return;
         }
 
@@ -696,8 +698,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         
         for (Ruta r : myMenu.getMyEmpresa().getListaRutas()) {
             if (r.getDestino().equalsIgnoreCase(des)) {
-                mostrarMensaje("No se pudo crear la ruta: Ya existe una ruta asignada hacia " + des);
-                javax.swing.JOptionPane.showMessageDialog(this, "Error: Ya existe una ruta con este destino.");
+                mostrarMensaje("ERROR","No se pudo crear la ruta: Ya existe una ruta asignada hacia " + des);
                 return;
             }
         }
@@ -714,12 +715,12 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         llenarTablaRutas();
         cargarCombosSalidas();
         verificarEstadoSalidasEnTiempoReal(); // Esto refrescará las tablas de forma segura
-        mostrarMensaje("Ruta con codigo " + cod + " hacia " + des + " creada correctamente.");
+        mostrarMensaje("EXITO","Ruta con codigo " + cod + " hacia " + des + " creada correctamente.");
 
     } catch (NumberFormatException e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Error: La tarifa debe ser un número válido.");
+        mostrarMensaje("ERROR" ,"La tarifa debe ser un número válido.");
     } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
+        mostrarMensaje("ERROR","Ocurrió un error: " + e.getMessage());
     }
     }//GEN-LAST:event_btnAnadirRutaActionPerformed
 
@@ -729,7 +730,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         // Validar campos vacíos
         if (txtPlacaBus.getText().trim().isEmpty() || comboTipoServicioBus.getSelectedItem() == null) {
 
-            mostrarMensaje("Complete por favor todos los campos.");
+            mostrarMensaje("INFO","Complete por favor todos los campos.");
             return;
         }
 
@@ -743,7 +744,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         boolean registrado = myMenu.getMyEmpresa().registrarBus(nuevoBus);
 
         if (!registrado) {
-            mostrarMensaje("No se pudo crear el bus " + placa + ": la placa ya existe.");
+            mostrarMensaje("ERROR","No se pudo crear el bus " + placa + ": la placa ya existe.");
             return;
         }
         
@@ -751,9 +752,9 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         cargarCombosSalidas();
         cargarCombosBuses();
         txtPlacaBus.setText("");
-        mostrarMensaje("Bus con placa " + placa + " creado correctamente.");
+        mostrarMensaje("EXITO","Bus con placa " + placa + " creado correctamente.");
     } catch (Exception e) {
-        mostrarMensaje("Error: " + e.getMessage());
+        mostrarMensaje("ERROR",  e.getMessage());
     }
     }//GEN-LAST:event_cmdAnadirBusActionPerformed
 
@@ -767,8 +768,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                 || comboBusSalida.getSelectedItem() == null
                 || calendarFechaSalida.getDate() == null) {
 
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Complete todos los campos.");
+            mostrarMensaje("INFO","Complete todos los campos de la salida.");
             return;
         }
 
@@ -777,36 +777,62 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         String placaBus = comboBusSalida.getSelectedItem().toString();
         String hora = normalizarHora(txtHoraSalida.getText());
         if (hora == null) {
-            mostrarMensaje("La hora debe estar en formato 24 horas. Ejemplos: 6, 06:00, 17:30.");
+            mostrarMensaje("ERROR","La hora debe estar en formato 24 horas. Ejemplos: 6, 06:00, 17:30.");
         return;}
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         String fecha = formatoFecha.format(calendarFechaSalida.getDate());
-
-        // Buscar ruta
+        
         Ruta rutaEncontrada = myMenu.getMyEmpresa().buscarRutaCodigo(codigoRuta);
-
-        // Validar ruta
         if (rutaEncontrada == null) {
-
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Ruta no encontrada.");
+            mostrarMensaje("ERROR", "Ruta no encontrada.");
             return;
         }
-
-        // Buscar bus
+        
         Bus busEncontrado = myMenu.getMyEmpresa().buscarBusPlaca(placaBus);
-
-        // Validar bus
         if (busEncontrado == null) {
-
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Bus no encontrado.");
+            mostrarMensaje("ERROR", "Bus no encontrado.");
             return;
         }
+        
         if (busEncontrado.getEstado().equalsIgnoreCase(Bus.ESTADO_MANTENIMIENTO)) {
-            mostrarMensaje("No se puede crear la salida: el bus " + placaBus + " está en mantenimiento.");
+            mostrarMensaje("ERROR", "No se puede crear la salida: el bus " + placaBus + " está en mantenimiento.");
             return;
         }
+        
+        LocalTime nuevaHoraSalida = LocalTime.parse(hora);
+    int nuevaDuracion = Integer.parseInt(rutaEncontrada.getTiempoEst());
+    LocalTime nuevaHoraLlegada = nuevaHoraSalida.plusHours(nuevaDuracion);
+
+    for (Salida sExistente : myMenu.getMyEmpresa().getListaSalidas()) {
+        if (sExistente.getEstado().equalsIgnoreCase("CANCELADA") || sExistente.getEstado().equalsIgnoreCase("FINALIZADA")) {
+            continue;
+        }
+    
+        LocalTime extHoraSalida = LocalTime.parse(sExistente.getHora());
+        int extDuracion = Integer.parseInt(sExistente.getRuta().getTiempoEst());
+        LocalTime extHoraLlegada = extHoraSalida.plusHours(extDuracion);
+    
+    // Validación A: Misma ruta, misma hora
+        if (sExistente.getRuta().getCodigoRuta().equalsIgnoreCase(codigoRuta) && extHoraSalida.equals(nuevaHoraSalida)) {
+            mostrarMensaje("ERROR", "Ya existe una salida programada para la ruta " + codigoRuta + " a las " + hora);
+            return;
+        }
+    
+    // Validación B: ¿El bus seleccionado está ocupado en ese rango de tiempo?
+        if (sExistente.getBus().getPlaca().equalsIgnoreCase(placaBus)) {
+        // Revisamos si los horarios se cruzan matemáticamente
+            boolean seCruzan = (nuevaHoraSalida.isBefore(extHoraLlegada) && nuevaHoraLlegada.isAfter(extHoraSalida)) 
+                           || nuevaHoraSalida.equals(extHoraSalida);
+        
+            if (seCruzan) {
+                mostrarMensaje("ERROR", "El bus " + placaBus + " ya está ocupado en la Salida " + sExistente.getIdSalida() + " (" + sExistente.getHora() + " hasta las " + extHoraLlegada + ")");
+                return;
+            }
+        }
+    }
+        
+        // Buscar ruta
+        
         // Crear salida
         Salida nuevaSalida = new Salida(
                 idSalida,
@@ -825,12 +851,11 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         // Limpiar campos
         txtHoraSalida.setText("");
 
-        mostrarMensaje("Salida con id " + idSalida + " creada correctamente.");
+        mostrarMensaje("EXITO","Salida con id " + idSalida + " creada correctamente.");
 
     } catch (Exception e) {
 
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Error: " + e.getMessage());
+        mostrarMensaje("ERROR"," Bus no encontrado.");
     }
     }//GEN-LAST:event_cmdAnadirSalidaActionPerformed
 
@@ -846,7 +871,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         String nuevoDestino = txtDestinoN.getText().trim();
     
         if (nuevoDestino.isEmpty()) {
-            mostrarMensaje("Por favor, ingrese un nombre de destino.");
+            mostrarMensaje("INFO","Por favor, ingrese un nombre de destino.");
             return;
         }
     
@@ -855,16 +880,16 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         if (registrado) {
             cargarCombosDestinos(); // Actualiza el JComboBox principal de rutas automáticamente
             txtDestinoN.setText("");
-            mostrarMensaje("Destino '" + nuevoDestino + "' agregado con éxito.");
+            mostrarMensaje("EXITO","Destino '" + nuevoDestino + "' agregado con éxito.");
         } else {
-            mostrarMensaje("Error: El destino '" + nuevoDestino + "' ya se encuentra registrado.");
+            mostrarMensaje("ERROR ","El destino '" + nuevoDestino + "' ya se encuentra registrado.");
         }
     }//GEN-LAST:event_cmbDestinoNActionPerformed
 
     private void cmdActualizarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdActualizarRutaActionPerformed
     try {
         if (cmbRutacg.getSelectedItem() == null || txtNuevaTarifa.getText().trim().isEmpty()) {
-            mostrarMensaje("Seleccione una ruta e ingrese la nueva tarifa.");
+            mostrarMensaje("INFO","Seleccione una ruta e ingrese la nueva tarifa.");
             return;
         }
         
@@ -872,7 +897,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         double nuevaTarifa = Double.parseDouble(txtNuevaTarifa.getText().trim());
         
         if (nuevaTarifa < 0) {
-            mostrarMensaje("Error: La tarifa no puede ser un valor negativo.");
+            mostrarMensaje("ERROR"," La tarifa no puede ser un valor negativo.");
             return;
         }
         
@@ -886,16 +911,17 @@ public class FrmParametrizacion extends javax.swing.JFrame {
             
             // Refrescamos la UI
             llenarTablaRutas();
+            llenarTablaSalidas();
             txtNuevaTarifa.setText("");
-            mostrarMensaje("La ruta " + codigoRuta + " ha actualizado su tarifa base a: $" + nuevaTarifa);
+            mostrarMensaje("EXITO","La ruta " + codigoRuta + " ha actualizado su tarifa base a: $" + nuevaTarifa);
         } else {
-            mostrarMensaje("Error: No se encontró la ruta seleccionada.");
+            mostrarMensaje("ERROR"," No se encontró la ruta seleccionada.");
         }
         
     } catch (NumberFormatException e) {
-        mostrarMensaje("Error: Ingrese un valor numérico válido para la tarifa.");
+        mostrarMensaje("ERROR","Ingrese un valor numérico válido para la tarifa.");
     } catch (Exception e) {
-        mostrarMensaje("Error al actualizar la ruta: " + e.getMessage());
+        mostrarMensaje("ERROR","Error al actualizar la ruta: " + e.getMessage());
     }
     }//GEN-LAST:event_cmdActualizarRutaActionPerformed
 
@@ -906,7 +932,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
     private void cmdActualizarBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdActualizarBusActionPerformed
     try {
         if (cmbPlacas.getSelectedItem() == null || cmbNuevoEstado.getSelectedItem() == null) {
-            mostrarMensaje("Por favor, seleccione una placa y un nuevo estado.");
+            mostrarMensaje("INFO","Por favor, seleccione una placa y un nuevo estado.");
             return;
         }
         
@@ -920,20 +946,86 @@ public class FrmParametrizacion extends javax.swing.JFrame {
             // 2. Cambiar el estado en el objeto real (Asegúrate de que exista setEstado en tu clase Bus)
             busAEditar.setEstado(nuevoEstado); 
             
-            // 3. Refrescar los componentes visuales de la UI
-            llenarTablaBuses();       // Actualiza la tabla de buses para mostrar el nuevo estado
-            cargarCombosSalidas();    // Si filtra los buses de las salidas, refresca el combo de allá
-            actualizarComboEstadosSegunBus(); // Modifica las opciones del combo actual
             
-            mostrarMensaje("El bus con placa " + placa + " cambio su estado a: " + nuevoEstado);
+            mostrarMensaje("EXITO","El bus con placa " + placa + " cambio su estado a: " + nuevoEstado);
+            if (nuevoEstado.equalsIgnoreCase(Bus.ESTADO_MANTENIMIENTO)) {
+                
+                // Recorremos las salidas buscando cuáles tenían asignado este bus
+                for (Salida salidaAfectada : myMenu.getMyEmpresa().getListaSalidas()) {
+                    if (salidaAfectada.getBus().getPlaca().equalsIgnoreCase(placa) 
+                            && !salidaAfectada.getEstado().equalsIgnoreCase("FINALIZADA")
+                            && !salidaAfectada.getEstado().equalsIgnoreCase("CANCELADA")) {
+                        
+                        mostrarMensaje("INFO", "La Salida " + salidaAfectada.getIdSalida() + " se vio afectada. Buscando reemplazo...");
+                        Bus busReemplazo = null;
+                        
+                        // --- PRIORIDAD 1: Buscar un bus totalmente DISPONIBLE ---
+                        for (Bus b : myMenu.getMyEmpresa().getListaBuses()) {
+                            if (b.getEstado().equalsIgnoreCase(Bus.ESTADO_DISPONIBLE) && !b.getPlaca().equalsIgnoreCase(placa)) {
+                                busReemplazo = b;
+                                break;
+                            }
+                        }
+                        
+                        // --- PRIORIDAD 2: Si no hay disponibles, buscar uno que termine a tiempo ---
+                        if (busReemplazo == null) {
+                            LocalTime horaSalidaAfectada = LocalTime.parse(salidaAfectada.getHora());
+                            
+                            for (Salida sPosible : myMenu.getMyEmpresa().getListaSalidas()) {
+                                // Buscamos salidas que usen OTRO bus y que estén EN VIAJE
+                                if (!sPosible.getBus().getPlaca().equalsIgnoreCase(placa) 
+                                        && sPosible.getEstado().equalsIgnoreCase("EN VIAJE")) {
+                                    
+                                    LocalTime horaInicioS = LocalTime.parse(sPosible.getHora());
+                                    int duracionS = Integer.parseInt(sPosible.getRuta().getTiempoEst());
+                                    LocalTime horaFinS = horaInicioS.plusHours(duracionS);
+                                    
+                                    // Si el bus termina antes o igual de que empiece la nueva salida, nos sirve
+                                    if (!horaFinS.isAfter(horaSalidaAfectada)) {
+                                        busReemplazo = sPosible.getBus();
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        
+                        // --- APLICAR REASIGNACIÓN ---
+                        if (busReemplazo != null) {
+                            salidaAfectada.setBus(busReemplazo); // Asignamos el nuevo bus a la salida
+                            mostrarMensaje("EXITO", "¡Salida " + salidaAfectada.getIdSalida() + " reasignada con éxito al Bus [" + busReemplazo.getPlaca() + "]!");
+                        } else {
+                            mostrarMensaje("ERROR", "No hay buses disponibles ni por terminar viaje para la Salida " + salidaAfectada.getIdSalida() + ". Se requiere atención manual.");
+                        }
+                    }
+                }
+            }
+            llenarTablaBuses();       
+            llenarTablaSalidas();
+            cargarCombosSalidas();    
+            actualizarComboEstadosSegunBus();
         } else {
-            mostrarMensaje("Error: No se encontró el bus seleccionado.");
+            mostrarMensaje("ERROR"," No se encontró el bus seleccionado.");
         }
         
     } catch (Exception e) {
-        mostrarMensaje("Error al actualizar estado del bus: " + e.getMessage());
+        mostrarMensaje("ERROR"," al actualizar estado del bus: " + e.getMessage());
     }
     }//GEN-LAST:event_cmdActualizarBusActionPerformed
+
+    private void cmbDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDestinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDestinoActionPerformed
+
+    private void cmbActualizarSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActualizarSalidasActionPerformed
+        try {
+        // Ejecuta el análisis de tiempos y actualiza los estados de buses y salidas
+        verificarEstadoSalidasEnTiempoReal();
+        
+        mostrarMensaje("EXITO", "Tablas y estados de tráfico actualizados correctamente.");
+    } catch (Exception e) {
+        mostrarMensaje("ERROR", "No se pudieron actualizar las salidas: " + e.getMessage());
+    }
+    }//GEN-LAST:event_cmbActualizarSalidasActionPerformed
     
     private void llenarTablaRutas() {
         DefaultTableModel modelo = (DefaultTableModel) tablaRutas.getModel();
@@ -1080,50 +1172,77 @@ public class FrmParametrizacion extends javax.swing.JFrame {
     }
     
     private void verificarEstadoSalidasEnTiempoReal() {
-    // Obtenemos la hora exacta en la que se encuentra la computadora del usuario
-    LocalTime horaActualPC = LocalTime.now();
-    DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime horaActualPC = LocalTime.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
     
-    mostrarMensaje("Ejecutando control de tráfico automático (" + horaActualPC.format(formato) + ")...");
+        mostrarMensaje("INFO", "Ejecutando control de tráfico automático (" + horaActualPC.format(formato) + ")...");
     
-    for (Salida s : myMenu.getMyEmpresa().getListaSalidas()) {
-        try {
-            // 1. Convertir la hora de salida del bus (String) a LocalTime
-            LocalTime horaSalida = LocalTime.parse(s.getHora());
-            
-            // 2. Extraer las horas estimadas de viaje desde la ruta asignada
-            int horasDeViaje = Integer.parseInt(s.getRuta().getTiempoEst());
-            
-            // 3. Calcular matemáticamente la hora exacta de destino
-            LocalTime horaLlegadaEstimada = horaSalida.plusHours(horasDeViaje);
-            
-            // 4. Evaluación lógica temporal:
-            if (horaActualPC.isAfter(horaSalida) && horaActualPC.isBefore(horaLlegadaEstimada)) {
-                // El reloj de la PC está entre la salida y la llegada: El bus está viajando
-                s.getBus().setEstado("EN VIAJE"); 
-                s.setEstado("EN VIAJE"); // Si tu clase Salida maneja estados individuales
-            } 
-            else if (horaActualPC.isAfter(horaLlegadaEstimada)) {
-                // El tiempo estimado ya se cumplió o se venció: El viaje concluyó
-                if (s.getBus().getEstado().equalsIgnoreCase("EN VIAJE")) {
-                    s.getBus().setEstado(Bus.ESTADO_DISPONIBLE); // Libera el bus automáticamente
-                    mostrarMensaje("El Bus [" + s.getBus().getPlaca() + "] completó su trayecto y ya está DISPONIBLE.");
-                }
-                s.setEstado("FINALIZADA");
+    // Primero, asumimos temporalmente que los buses que no estén en mantenimiento van a estar disponibles
+    // a menos que encontremos una salida activa que demuestre lo contrario.
+        for (Bus b : myMenu.getMyEmpresa().getListaBuses()) {
+            if (!b.getEstado().equalsIgnoreCase(Bus.ESTADO_MANTENIMIENTO)) {
+                b.setEstado(Bus.ESTADO_DISPONIBLE);
             }
-        } catch (Exception ex) {
-            // Previene fallos en caso de que alguna hora no cumpla el patrón "HH:mm"
-            System.out.println("No se pudo procesar la salida " + s.getIdSalida() + ": " + ex.getMessage());
         }
+    
+        for (Salida s : myMenu.getMyEmpresa().getListaSalidas()) {
+            try {
+                if (s.getEstado().equalsIgnoreCase("CANCELADA")) continue;
+
+                LocalTime horaSalida = LocalTime.parse(s.getHora());
+                int horasDeViaje = Integer.parseInt(s.getRuta().getTiempoEst());
+                LocalTime horaLlegadaEstimada = horaSalida.plusHours(horasDeViaje);
+            
+            // 1. Caso: El viaje está sucediendo justo ahora
+                if ((horaActualPC.isAfter(horaSalida) || horaActualPC.equals(horaSalida)) && horaActualPC.isBefore(horaLlegadaEstimada)) {
+                    s.setEstado("EN VIAJE");
+                
+                // Si el bus no está en taller, se marca obligatoriamente como EN VIAJE
+                    if (!s.getBus().getEstado().equalsIgnoreCase(Bus.ESTADO_MANTENIMIENTO)) {
+                        s.getBus().setEstado("EN VIAJE"); 
+                    }
+                } 
+            // 2. Caso: El viaje ya terminó en base al reloj
+                else if (horaActualPC.isAfter(horaLlegadaEstimada) || horaActualPC.equals(horaLlegadaEstimada)) {
+                    if (!s.getEstado().equalsIgnoreCase("FINALIZADA")) {
+                        s.setEstado("FINALIZADA");
+                        mostrarMensaje("INFO", "El viaje de la Salida [" + s.getIdSalida() + "] ha concluido.");
+                    }
+                }
+            // 3. Caso: Es un viaje programado para el futuro (mismo día más tarde)
+                else {
+                    s.setEstado("PROGRAMADA");
+                }
+            
+            } catch (Exception ex) {
+                mostrarMensaje("ERROR", "No se pudo procesar la salida " + s.getIdSalida() + ": " + ex.getMessage());
+            }
+        }
+    
+    // Sincronizar las tablas visuales
+        llenarTablaBuses();
+        llenarTablaSalidas();
     }
     
-    // Sincronizar las tablas visuales con los nuevos estados calculados
-    llenarTablaBuses();
-    llenarTablaSalidas();
-}
+    private void mostrarMensaje(String tipo, String mensaje) {
+        String prefijo = "";
     
-    private void mostrarMensaje(String mensaje) {
-        txtMensajes.append("> " + mensaje + "\n");
+        switch (tipo.toUpperCase()) {
+            case "EXITO":
+                prefijo = "[✔ ÉXITO] ";
+                break;
+            case "ERROR":
+                prefijo = "[❌ ERROR] ";
+                break;
+            case "INFO":
+                prefijo = "[💡 INFO] ";
+                break;
+            default:
+                prefijo = "[> ] ";
+                break;
+        }
+    
+        txtMensajes.append(prefijo + mensaje + "\n");
     }
 
 
