@@ -21,15 +21,22 @@ public class Salida {
     private String fecha;
     private String hora;
     private String estado;
+    private Silla[] sillas;
     
-    
-    public Salida(String idSalida,Ruta ruta,Bus bus,String fecha,String hora){
+    public Salida(String idSalida, Ruta ruta, Bus bus, String fecha, String hora) {
         this.idSalida = idSalida;
         this.ruta = ruta;
         this.bus = bus;
         this.fecha = fecha;
         this.hora = hora;
         this.estado = ESTADO_PROGRAMADA;
+        
+        // Inicializamos las sillas según la capacidad del bus asignado
+        int capacidad = bus.getCapacidad();
+        this.sillas = new Silla[capacidad];
+        for (int i = 0; i < capacidad; i++) {
+            this.sillas[i] = new Silla(i + 1); // Nacen LIBRES
+        }
     }
     public Salida() {
         this.idSalida = "";
@@ -38,6 +45,7 @@ public class Salida {
         this.fecha = "";
         this.hora = "";
         this.estado = ESTADO_PROGRAMADA;
+        this.sillas = new Silla[0];
     }
     
     public String getIdSalida() { return idSalida; }
@@ -58,6 +66,8 @@ public class Salida {
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado.trim().toUpperCase(); }
     
+    public Silla[] getSillas() { return sillas; }
+    
     public double precioFinal(){
         double pfinal = ruta.getTarifaBase();
         if (bus.getTipoServicio().equalsIgnoreCase(Bus.TIPO_EJECUTIVO)) {
@@ -67,16 +77,16 @@ public class Salida {
         }
     }
     
-    public boolean gestionOcupacionSilla(int numSilla){
+    public boolean gestionOcupacionSilla(int numSilla) {
         if(this.estado.equalsIgnoreCase(ESTADO_CANCELADA) || this.estado.equalsIgnoreCase(ESTADO_FINALIZADA)){
             return false;
-        }else{
+        } else {
             int indice = numSilla - 1;
-            if(indice >= 0 && indice < bus.getMySillas().length){
-                Sillas sillaAsignada = bus.getMySillas()[indice];
+            if(indice >= 0 && indice < sillas.length){ // Usamos 'sillas.length'
+                Silla sillaAsignada = sillas[indice];
                 
-                if(!sillaAsignada.isEstado()){
-                    sillaAsignada.setEstado(true);
+                if(sillaAsignada.isLibre()){ // Usamos el método isLibre() que creamos en Silla
+                    sillaAsignada.setEstado(Silla.ESTADO_OCUPADA);
                     return true;
                 }
             }
@@ -84,22 +94,31 @@ public class Salida {
         }
     }
     
-    public int contarSillasDisponibles(){
+    // Actualizado
+    public int contarSillasDisponibles() {
         int cnt = 0;
-        for(Sillas s : bus.getMySillas()){
-            if(!s.isEstado()){
+        for(Silla s : sillas){
+            if(s.isLibre()){
                 cnt++;
             }
         }
         return cnt;
     }
+
+    // Nuevo método para saber fácilmente cuántas se han vendido
+    public int getCantidadSillasVendidas() {
+        return sillas.length - contarSillasDisponibles();
+    }
             
+    // Actualizado con TU idea para mostrar en las listas de la GUI
     @Override
     public String toString() {
-        return "\nSalida : "+this.idSalida+
-                "\nRuta : "+this.ruta.getOrigen() + "-" + ruta.getDestino()+
-                "\nBus : "+this.bus.getPlaca()+
-                "\nFecha : "+this.fecha+ "\nHora : "+this.hora+
-                "\nEstado : "+this.estado;
+        return "Salida : " + this.idSalida +
+               " | Ruta : " + this.ruta.getOrigen() + "-" + ruta.getDestino() +
+               " | Bus : " + this.bus.getPlaca() +
+               " | Fecha : " + this.fecha + " " + this.hora +
+               " | Ocupación : " + getCantidadSillasVendidas() + "/" + sillas.length + // ¡TU IDEA AQUÍ!
+               " | Estado : " + this.estado;
     }
+                
 }

@@ -8,18 +8,21 @@ package servicio;
  *
  * @author Usaurio
  */
-public class Sillas {
+public class Silla {
+    public static final String ESTADO_LIBRE = "LIBRE";
+    public static final String ESTADO_OCUPADA = "OCUPADA";
+    
    private int numAsiento;
-   private boolean estado;
+   private String estado;
    
-   public Sillas(int numAsiento, boolean estado) {
+   public Silla(int numAsiento) {
         this.numAsiento = numAsiento;
-        this.estado = estado;
+        this.estado = ESTADO_LIBRE;
     }
    
-   public Sillas(){
+   public Silla(){
        this.numAsiento = 0;
-       this.estado = false;//false vacia true llena
+       this.estado = ESTADO_LIBRE;//false vacia true llena
    }
 
     public int getNumAsiento() {
@@ -28,16 +31,19 @@ public class Sillas {
     public void setNumAsiento(int numAsiento) {
         this.numAsiento = numAsiento;
     }
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    public boolean isLibre() {
+        return this.estado.equals(ESTADO_LIBRE);
+    }
+    
     @Override
     public String toString() {
-        return "\nnumAsiento : "+this.numAsiento+
+        return "\nSilla : "+this.numAsiento+
                 "\nEstado : "+this.estado;
     }
 }

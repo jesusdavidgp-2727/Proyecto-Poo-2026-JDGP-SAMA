@@ -4,12 +4,39 @@
  */
 package pantalla;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Usuario
  */
 public class FrmVentaPasajes extends javax.swing.JFrame {
     private FrmMenuPrincipal menu;
+    private Map<Integer, JButton> botonesSillasIda = new HashMap<>();
+    private Map<Integer, JButton> botonesSillasIdaVuelta = new HashMap<>();
+    private Map<Integer, JButton> botonesSillasRegreso = new HashMap<>();
+    private int sillaSeleccionada = -1;
+    private int sillaIdaVueltaSeleccionada = -1;
+    private int sillaRegresoSeleccionada = -1;
+    private JComboBox<String> comboSalidaIdaVuelta;
+    private JComboBox<String> comboSalidaRegreso;
+    private JTextField txtDocumentoIdaVuelta;
+    private JTextField txtNombreIdaVuelta;
+    private JPanel panelSillasIdaVuelta;
+    private JPanel panelSillasRegreso;
+    private JTextArea txtReciboRegreso;
     
     /**
      * Creates new form FrmVentaPasajes
@@ -17,6 +44,7 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     public FrmVentaPasajes(FrmMenuPrincipal myMenu) {
         initComponents();
         this.menu=myMenu;
+        configurarVentaPasajes();
     }
 
     /**
@@ -533,8 +561,8 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1)))
                         .addContainerGap())))
         );
@@ -554,11 +582,11 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3))
-                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -584,6 +612,216 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void configurarVentaPasajes() {
+        setLocationRelativeTo(null);
+        jLabel3.setText("RECIBO:");
+        jTextArea3.setEditable(false);
+        registrarBotonesSillas(jPanel2, botonesSillasIda, true);
+        cargarSalidasProgramadas(jComboBox1);
+        jComboBox1.addActionListener(evt -> {
+            sillaSeleccionada = -1;
+            actualizarBotonesSillas(jComboBox1, botonesSillasIda, sillaSeleccionada);
+        });
+        actualizarBotonesSillas(jComboBox1, botonesSillasIda, sillaSeleccionada);
+        crearPestanaIdaVuelta();
+        pack();
+    }
+
+    private void crearPestanaIdaVuelta() {
+        JPanel panel = new JPanel(new java.awt.BorderLayout(8, 8));
+        JPanel panelDatos = new JPanel(new GridLayout(4, 2, 6, 6));
+        comboSalidaIdaVuelta = new JComboBox<>();
+        comboSalidaRegreso = new JComboBox<>();
+        txtDocumentoIdaVuelta = new JTextField();
+        txtNombreIdaVuelta = new JTextField();
+        panelSillasIdaVuelta = new JPanel(new GridLayout(0, 10, 4, 4));
+        panelSillasRegreso = new JPanel(new GridLayout(0, 10, 4, 4));
+        txtReciboRegreso = new JTextArea(8, 30);
+        JButton btnVenderIdaVuelta = new JButton("Vender ida y vuelta");
+
+        panelDatos.add(new JLabel("Salida ida:"));
+        panelDatos.add(comboSalidaIdaVuelta);
+        panelDatos.add(new JLabel("Salida regreso:"));
+        panelDatos.add(comboSalidaRegreso);
+        panelDatos.add(new JLabel("Documento:"));
+        panelDatos.add(txtDocumentoIdaVuelta);
+        panelDatos.add(new JLabel("Nombre:"));
+        panelDatos.add(txtNombreIdaVuelta);
+
+        JPanel panelSillas = new JPanel(new GridLayout(1, 2, 8, 8));
+        JPanel panelIda = new JPanel(new java.awt.BorderLayout());
+        panelIda.add(new JLabel("Silla ida"), java.awt.BorderLayout.NORTH);
+        panelIda.add(panelSillasIdaVuelta, java.awt.BorderLayout.CENTER);
+        JPanel panelRegreso = new JPanel(new java.awt.BorderLayout());
+        panelRegreso.add(new JLabel("Silla regreso"), java.awt.BorderLayout.NORTH);
+        panelRegreso.add(panelSillasRegreso, java.awt.BorderLayout.CENTER);
+        panelSillas.add(panelIda);
+        panelSillas.add(panelRegreso);
+
+        panel.add(panelDatos, java.awt.BorderLayout.NORTH);
+        panel.add(panelSillas, java.awt.BorderLayout.CENTER);
+        panel.add(new JScrollPane(txtReciboRegreso), java.awt.BorderLayout.SOUTH);
+        panel.add(btnVenderIdaVuelta, java.awt.BorderLayout.EAST);
+
+        crearBotonesSillas(panelSillasIdaVuelta, botonesSillasIdaVuelta, true);
+        crearBotonesSillas(panelSillasRegreso, botonesSillasRegreso, false);
+        cargarSalidasProgramadas(comboSalidaIdaVuelta);
+        cargarSalidasProgramadas(comboSalidaRegreso);
+
+        comboSalidaIdaVuelta.addActionListener(evt -> {
+            sillaIdaVueltaSeleccionada = -1;
+            actualizarBotonesSillas(comboSalidaIdaVuelta, botonesSillasIdaVuelta, sillaIdaVueltaSeleccionada);
+        });
+        comboSalidaRegreso.addActionListener(evt -> {
+            sillaRegresoSeleccionada = -1;
+            actualizarBotonesSillas(comboSalidaRegreso, botonesSillasRegreso, sillaRegresoSeleccionada);
+        });
+        btnVenderIdaVuelta.addActionListener(evt -> venderIdaVuelta());
+
+        actualizarBotonesSillas(comboSalidaIdaVuelta, botonesSillasIdaVuelta, sillaIdaVueltaSeleccionada);
+        actualizarBotonesSillas(comboSalidaRegreso, botonesSillasRegreso, sillaRegresoSeleccionada);
+        jTabbedPane1.addTab("Ida y vuelta", panel);
+    }
+    
+    
+    private void cargarSalidasProgramadas(JComboBox<String> combo) {
+        combo.removeAllItems();
+        // Llamamos al método traductor de la Empresa
+        String[] salidas = menu.getMyEmpresa().obtenerSalidasProgramadasFormateadas();
+        for (String s : salidas) {
+            combo.addItem(s);
+        }
+    }
+
+    
+
+    private String obtenerIdSalida(JComboBox<String> combo) {
+        Object seleccionado = combo.getSelectedItem();
+        if (seleccionado == null) {
+            return "";
+        }
+        return seleccionado.toString().split(" ")[0];
+    }
+
+    private void registrarBotonesSillas(Component componente, Map<Integer, JButton> mapa, boolean idaIndividual) {
+        if (componente instanceof JButton boton) {
+            registrarBotonSilla(boton, mapa, idaIndividual);
+            return;
+        }
+        if (componente instanceof java.awt.Container contenedor) {
+            for (Component hijo : contenedor.getComponents()) {
+                registrarBotonesSillas(hijo, mapa, idaIndividual);
+            }
+        }
+    }
+
+    private void crearBotonesSillas(JPanel panel, Map<Integer, JButton> mapa, boolean ida) {
+        for (int i = 1; i <= 40; i++) {
+            JButton boton = new JButton(String.valueOf(i));
+            registrarBotonSilla(boton, mapa, ida);
+            panel.add(boton);
+        }
+    }
+
+    private void registrarBotonSilla(JButton boton, Map<Integer, JButton> mapa, boolean ida) {
+        try {
+            int silla = Integer.parseInt(boton.getText().trim());
+            if (silla < 1 || silla > 40 || mapa.containsKey(silla)) {
+                boton.setVisible(false);
+                return;
+            }
+            mapa.put(silla, boton);
+            boton.addActionListener(evt -> seleccionarSilla(silla, ida));
+        } catch (NumberFormatException e) {
+            boton.setVisible(false);
+        }
+    }
+
+    private void seleccionarSilla(int silla, boolean ida) {
+        if (ida && jTabbedPane1.getSelectedIndex() == 0) {
+            sillaSeleccionada = silla;
+            actualizarBotonesSillas(jComboBox1, botonesSillasIda, sillaSeleccionada);
+            jTextArea3.setText("Silla seleccionada: " + sillaSeleccionada);
+        } else if (ida) {
+            sillaIdaVueltaSeleccionada = silla;
+            actualizarBotonesSillas(comboSalidaIdaVuelta, botonesSillasIdaVuelta, sillaIdaVueltaSeleccionada);
+        } else {
+            sillaRegresoSeleccionada = silla;
+            actualizarBotonesSillas(comboSalidaRegreso, botonesSillasRegreso, sillaRegresoSeleccionada);
+        }
+    }
+
+    private void actualizarBotonesSillas(JComboBox<String> combo, Map<Integer, JButton> mapa, int seleccionada) {
+        String idSalida = obtenerIdSalida(combo);
+        
+        // Le pedimos a la empresa el arreglo de estados (true = ocupada, false = libre)
+        boolean[] estadoSillas = menu.getMyEmpresa().obtenerEstadoSillasSalida(idSalida);
+        int capacidad = estadoSillas.length; 
+        
+        for (Map.Entry<Integer, JButton> entry : mapa.entrySet()) {
+            int numSilla = entry.getKey();
+            JButton boton = entry.getValue();
+            
+            boolean existe = numSilla <= capacidad;
+            
+            // Verificamos si está ocupada en el arreglo. (numSilla - 1 porque el arreglo empieza en 0)
+            boolean ocupada = existe && estadoSillas[numSilla - 1]; 
+            
+            boton.setVisible(existe);
+            boton.setEnabled(existe && !ocupada); // Si está ocupada, se deshabilita
+            
+            if (!existe) {
+                boton.setBackground(null);
+            } else if (numSilla == seleccionada) {
+                boton.setBackground(Color.CYAN); // Silla que acaba de cliquear
+            } else if (ocupada) {
+                boton.setBackground(Color.LIGHT_GRAY); // Gris para ocupadas
+            } else {
+                boton.setBackground(new Color(180, 235, 180)); // Verde para libres
+            }
+        }
+    }
+
+    private void venderTiqueteIndividual() {
+        String respuesta = menu.getMyEmpresa().venderTiquete(
+                obtenerIdSalida(jComboBox1),
+                jTextField1.getText(),
+                jTextField2.getText(),
+                sillaSeleccionada
+        );
+        jTextArea3.setText(respuesta);
+        if (respuesta.startsWith("VENTA EXITOSA")) {
+            sillaSeleccionada = -1;
+            refrescarSalidasYAsientos();
+        }
+    }
+
+    private void venderIdaVuelta() {
+        String respuesta = menu.getMyEmpresa().venderIdaVuelta(
+                obtenerIdSalida(comboSalidaIdaVuelta),
+                sillaIdaVueltaSeleccionada,
+                obtenerIdSalida(comboSalidaRegreso),
+                sillaRegresoSeleccionada,
+                txtDocumentoIdaVuelta.getText(),
+                txtNombreIdaVuelta.getText()
+        );
+        txtReciboRegreso.setText(respuesta);
+        if (respuesta.startsWith("VENTA IDA Y VUELTA EXITOSA")) {
+            sillaIdaVueltaSeleccionada = -1;
+            sillaRegresoSeleccionada = -1;
+            refrescarSalidasYAsientos();
+        }
+    }
+
+    private void refrescarSalidasYAsientos() {
+        cargarSalidasProgramadas(jComboBox1);
+        cargarSalidasProgramadas(comboSalidaIdaVuelta);
+        cargarSalidasProgramadas(comboSalidaRegreso);
+        actualizarBotonesSillas(jComboBox1, botonesSillasIda, sillaSeleccionada);
+        actualizarBotonesSillas(comboSalidaIdaVuelta, botonesSillasIdaVuelta, sillaIdaVueltaSeleccionada);
+        actualizarBotonesSillas(comboSalidaRegreso, botonesSillasRegreso, sillaRegresoSeleccionada);
+    }
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -798,8 +1036,7 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton68ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        System.out.println("Venta de pasajes"+ this.menu.getMyEmpresa().registrarMetodo());
+        venderTiqueteIndividual();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

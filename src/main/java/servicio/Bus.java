@@ -20,7 +20,8 @@ public class Bus {
     private String placa;
     private String tipoServicio;
     private String estado;
-    private Sillas[] mySillas;
+    //private Silla[] mySillas;
+    private int capacidad;
     
     
     public Bus(String placa, String tipoServicio, String estado) {
@@ -28,17 +29,17 @@ public class Bus {
         this.tipoServicio = tipoServicio.trim().toUpperCase();
         this.estado = estado.trim().toUpperCase();
 
-        int capacidad;
         if (this.tipoServicio.equalsIgnoreCase(TIPO_EJECUTIVO)) {
             capacidad = 30;
         } else {
             capacidad = 40;
         }
-
-        this.mySillas = new Sillas[capacidad];
-        for (int i = 0; i < capacidad; i++) {
-            this.mySillas[i] = new Sillas(i + 1, false);
-        }
+    }
+    public Bus(String placa, String tipoServicio, String estado, int capacidad) {
+        this.placa = placa.trim().toUpperCase();
+        this.tipoServicio = tipoServicio.trim().toUpperCase();
+        this.estado = estado.trim().toUpperCase();
+        this.capacidad = capacidad;
     }
     public Bus(String placa, String tipoServicio) {
         this(placa, tipoServicio, ESTADO_DISPONIBLE);
@@ -47,7 +48,7 @@ public class Bus {
         this.placa = "";
         this.tipoServicio = "";
         this.estado = "";
-        this.mySillas = new Sillas[0];
+        this.capacidad = 0;
     }
 
     public String getPlaca() {return placa;}
@@ -59,15 +60,19 @@ public class Bus {
     
     public String getEstado() {return estado;}
     public void setEstado(String estado) {this.estado = estado;}
+
+    public int getCapacidad() {return capacidad;}
+
+    public void setCapacidad(int capacidad) {this.capacidad = capacidad;}
     
-    public Sillas[] getMySillas() {return mySillas;}
-    public void setMySillas(Sillas[] mySillas) {this.mySillas = mySillas;}
+    
+    
     @Override
     public String toString() {
         return "\nPlaca: "+this.placa+
-                "\n tipoServicio: "+this.tipoServicio+
-                "\n estado: "+this.estado+
-                "\n total sillas: "+ mySillas.length;
+                "\n | TipoServicio: "+this.tipoServicio+
+                "\n | Estado: "+this.estado+
+                "\n | Capacidad: "+ this.capacidad;
     }
     
 }
