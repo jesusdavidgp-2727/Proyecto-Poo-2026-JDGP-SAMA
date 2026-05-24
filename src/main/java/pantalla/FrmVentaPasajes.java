@@ -56,11 +56,6 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField3 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -85,10 +80,6 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
         jButton32 = new javax.swing.JButton();
         jButton33 = new javax.swing.JButton();
         jButton34 = new javax.swing.JButton();
-        jButton35 = new javax.swing.JButton();
-        jButton36 = new javax.swing.JButton();
-        jButton37 = new javax.swing.JButton();
-        jButton42 = new javax.swing.JButton();
         jButton43 = new javax.swing.JButton();
         jButton46 = new javax.swing.JButton();
         jButton47 = new javax.swing.JButton();
@@ -113,29 +104,10 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
         jButton64 = new javax.swing.JButton();
         jButton66 = new javax.swing.JButton();
         jButton68 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
-        jButton26 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
-
-        jTextField3.setText("jTextField3");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venta de Pasajes");
@@ -147,6 +119,8 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
         jLabel2.setText("Nombre:");
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
+
+        jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -197,18 +171,6 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
 
         jButton34.setText("7");
         jButton34.addActionListener(this::jButton34ActionPerformed);
-
-        jButton35.setText("1");
-        jButton35.addActionListener(this::jButton35ActionPerformed);
-
-        jButton36.setText("1");
-        jButton36.addActionListener(this::jButton36ActionPerformed);
-
-        jButton37.setText("1");
-        jButton37.addActionListener(this::jButton37ActionPerformed);
-
-        jButton42.setText("1");
-        jButton42.addActionListener(this::jButton42ActionPerformed);
 
         jButton43.setText("12");
         jButton43.addActionListener(this::jButton43ActionPerformed);
@@ -373,16 +335,6 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
                         .addComponent(jButton57, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton55, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(505, 505, 505)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton42)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton35))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton36)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton37)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -390,143 +342,57 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton42)
-                            .addComponent(jButton35))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton36)
-                            .addComponent(jButton37)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton12)
-                                .addComponent(jButton13)
-                                .addComponent(jButton16)
-                                .addComponent(jButton9))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton46)
-                                .addComponent(jButton47)
-                                .addComponent(jButton43)
-                                .addComponent(jButton50)
-                                .addComponent(jButton14))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton30)
-                                .addComponent(jButton31))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton34)
-                                .addComponent(jButton27)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton15)
-                            .addComponent(jButton29)
-                            .addComponent(jButton48)
-                            .addComponent(jButton28)
-                            .addComponent(jButton33)
-                            .addComponent(jButton32)
-                            .addComponent(jButton11)
-                            .addComponent(jButton10)
-                            .addComponent(jButton51)
-                            .addComponent(jButton52))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton17)
-                            .addComponent(jButton58)
-                            .addComponent(jButton53)
-                            .addComponent(jButton56)
-                            .addComponent(jButton54)
-                            .addComponent(jButton38)
-                            .addComponent(jButton59)
-                            .addComponent(jButton18)
-                            .addComponent(jButton57)
-                            .addComponent(jButton55))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton64)
-                            .addComponent(jButton61)
-                            .addComponent(jButton68)
-                            .addComponent(jButton66)
-                            .addComponent(jButton63)
-                            .addComponent(jButton62)
-                            .addComponent(jButton60))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        jButton19.setText("1");
-        jButton19.addActionListener(this::jButton19ActionPerformed);
-
-        jButton20.setText("1");
-        jButton20.addActionListener(this::jButton20ActionPerformed);
-
-        jButton21.setText("1");
-        jButton21.addActionListener(this::jButton21ActionPerformed);
-
-        jButton22.setText("1");
-        jButton22.addActionListener(this::jButton22ActionPerformed);
-
-        jButton23.setText("1");
-        jButton23.addActionListener(this::jButton23ActionPerformed);
-
-        jButton24.setText("1");
-        jButton24.addActionListener(this::jButton24ActionPerformed);
-
-        jButton25.setText("1");
-        jButton25.addActionListener(this::jButton25ActionPerformed);
-
-        jButton26.setText("1");
-        jButton26.addActionListener(this::jButton26ActionPerformed);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton23))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton25)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton12)
+                        .addComponent(jButton13)
+                        .addComponent(jButton16)
+                        .addComponent(jButton9))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton46)
+                        .addComponent(jButton47)
+                        .addComponent(jButton43)
+                        .addComponent(jButton50)
+                        .addComponent(jButton14))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton30)
+                        .addComponent(jButton31))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton34)
+                        .addComponent(jButton27)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton26)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton19))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton21)))
-                .addContainerGap(154, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton22)
-                            .addComponent(jButton23))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton24)
-                            .addComponent(jButton25)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton26)
-                            .addComponent(jButton19))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton20)
-                            .addComponent(jButton21))))
-                .addGap(0, 84, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton15)
+                    .addComponent(jButton29)
+                    .addComponent(jButton48)
+                    .addComponent(jButton28)
+                    .addComponent(jButton33)
+                    .addComponent(jButton32)
+                    .addComponent(jButton11)
+                    .addComponent(jButton10)
+                    .addComponent(jButton51)
+                    .addComponent(jButton52))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton17)
+                    .addComponent(jButton58)
+                    .addComponent(jButton53)
+                    .addComponent(jButton56)
+                    .addComponent(jButton54)
+                    .addComponent(jButton38)
+                    .addComponent(jButton59)
+                    .addComponent(jButton18)
+                    .addComponent(jButton57)
+                    .addComponent(jButton55))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton64)
+                    .addComponent(jButton61)
+                    .addComponent(jButton68)
+                    .addComponent(jButton66)
+                    .addComponent(jButton63)
+                    .addComponent(jButton62)
+                    .addComponent(jButton60))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.setText("VALOR:");
@@ -545,7 +411,7 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 498, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -557,7 +423,6 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField1)
                                     .addComponent(jTextField2)))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -586,8 +451,6 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -599,8 +462,7 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -624,66 +486,9 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
             actualizarBotonesSillas(jComboBox1, botonesSillasIda, sillaSeleccionada);
         });
         actualizarBotonesSillas(jComboBox1, botonesSillasIda, sillaSeleccionada);
-        crearPestanaIdaVuelta();
+
         pack();
     }
-
-    private void crearPestanaIdaVuelta() {
-        JPanel panel = new JPanel(new java.awt.BorderLayout(8, 8));
-        JPanel panelDatos = new JPanel(new GridLayout(4, 2, 6, 6));
-        comboSalidaIdaVuelta = new JComboBox<>();
-        comboSalidaRegreso = new JComboBox<>();
-        txtDocumentoIdaVuelta = new JTextField();
-        txtNombreIdaVuelta = new JTextField();
-        panelSillasIdaVuelta = new JPanel(new GridLayout(0, 10, 4, 4));
-        panelSillasRegreso = new JPanel(new GridLayout(0, 10, 4, 4));
-        txtReciboRegreso = new JTextArea(8, 30);
-        JButton btnVenderIdaVuelta = new JButton("Vender ida y vuelta");
-
-        panelDatos.add(new JLabel("Salida ida:"));
-        panelDatos.add(comboSalidaIdaVuelta);
-        panelDatos.add(new JLabel("Salida regreso:"));
-        panelDatos.add(comboSalidaRegreso);
-        panelDatos.add(new JLabel("Documento:"));
-        panelDatos.add(txtDocumentoIdaVuelta);
-        panelDatos.add(new JLabel("Nombre:"));
-        panelDatos.add(txtNombreIdaVuelta);
-
-        JPanel panelSillas = new JPanel(new GridLayout(1, 2, 8, 8));
-        JPanel panelIda = new JPanel(new java.awt.BorderLayout());
-        panelIda.add(new JLabel("Silla ida"), java.awt.BorderLayout.NORTH);
-        panelIda.add(panelSillasIdaVuelta, java.awt.BorderLayout.CENTER);
-        JPanel panelRegreso = new JPanel(new java.awt.BorderLayout());
-        panelRegreso.add(new JLabel("Silla regreso"), java.awt.BorderLayout.NORTH);
-        panelRegreso.add(panelSillasRegreso, java.awt.BorderLayout.CENTER);
-        panelSillas.add(panelIda);
-        panelSillas.add(panelRegreso);
-
-        panel.add(panelDatos, java.awt.BorderLayout.NORTH);
-        panel.add(panelSillas, java.awt.BorderLayout.CENTER);
-        panel.add(new JScrollPane(txtReciboRegreso), java.awt.BorderLayout.SOUTH);
-        panel.add(btnVenderIdaVuelta, java.awt.BorderLayout.EAST);
-
-        crearBotonesSillas(panelSillasIdaVuelta, botonesSillasIdaVuelta, true);
-        crearBotonesSillas(panelSillasRegreso, botonesSillasRegreso, false);
-        cargarSalidasProgramadas(comboSalidaIdaVuelta);
-        cargarSalidasProgramadas(comboSalidaRegreso);
-
-        comboSalidaIdaVuelta.addActionListener(evt -> {
-            sillaIdaVueltaSeleccionada = -1;
-            actualizarBotonesSillas(comboSalidaIdaVuelta, botonesSillasIdaVuelta, sillaIdaVueltaSeleccionada);
-        });
-        comboSalidaRegreso.addActionListener(evt -> {
-            sillaRegresoSeleccionada = -1;
-            actualizarBotonesSillas(comboSalidaRegreso, botonesSillasRegreso, sillaRegresoSeleccionada);
-        });
-        btnVenderIdaVuelta.addActionListener(evt -> venderIdaVuelta());
-
-        actualizarBotonesSillas(comboSalidaIdaVuelta, botonesSillasIdaVuelta, sillaIdaVueltaSeleccionada);
-        actualizarBotonesSillas(comboSalidaRegreso, botonesSillasRegreso, sillaRegresoSeleccionada);
-        jTabbedPane1.addTab("Ida y vuelta", panel);
-    }
-    
     
     private void cargarSalidasProgramadas(JComboBox<String> combo) {
         combo.removeAllItems();
@@ -847,38 +652,6 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
-
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton21ActionPerformed
-
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton22ActionPerformed
-
-    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton23ActionPerformed
-
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton24ActionPerformed
-
-    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton25ActionPerformed
-
-    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton26ActionPerformed
-
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton27ActionPerformed
@@ -894,22 +667,6 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton34ActionPerformed
-
-    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton35ActionPerformed
-
-    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton36ActionPerformed
-
-    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton37ActionPerformed
-
-    private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton42ActionPerformed
 
     private void jButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton43ActionPerformed
         // TODO add your handling code here:
@@ -1039,6 +796,10 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
         venderTiqueteIndividual();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1054,14 +815,6 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
@@ -1070,11 +823,7 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
-    private javax.swing.JButton jButton35;
-    private javax.swing.JButton jButton36;
-    private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
-    private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton43;
     private javax.swing.JButton jButton46;
     private javax.swing.JButton jButton47;
@@ -1103,16 +852,10 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

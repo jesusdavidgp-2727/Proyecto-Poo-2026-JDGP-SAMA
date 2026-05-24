@@ -106,9 +106,6 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cmbRutacg = new javax.swing.JComboBox<>();
-        panelMensaje = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        txtMensajes = new javax.swing.JTextArea();
 
         jLabel4.setText("jLabel4");
 
@@ -172,17 +169,17 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(u1)
                         .addGap(18, 18, 18)
-                        .addComponent(txtPlacaBus, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
+                        .addComponent(txtPlacaBus, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(m1)
                         .addGap(18, 18, 18)
-                        .addComponent(comboTipoServicioBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
+                        .addComponent(comboTipoServicioBus, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(cmdAnadirBus))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(316, 316, 316)
+                        .addGap(332, 332, 332)
                         .addComponent(jLabel11)))
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(618, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +193,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                     .addComponent(comboTipoServicioBus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(u1)
                     .addComponent(cmdAnadirBus, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelAbajoBuses.add(jPanel2);
@@ -216,6 +213,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
 
         cmbNuevoEstado.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         cmbNuevoEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbNuevoEstado.addActionListener(this::cmbNuevoEstadoActionPerformed);
 
         cmdActualizarBus.setFont(new java.awt.Font("Perpetua Titling MT", 0, 12)); // NOI18N
         cmdActualizarBus.setText("actualizar");
@@ -231,17 +229,17 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(jLabel13)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101)
+                        .addComponent(cmbPlacas, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel14)
-                        .addGap(41, 41, 41)
-                        .addComponent(cmbNuevoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbNuevoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(cmdActualizarBus))
                     .addGroup(panelXBusesLayout.createSequentialGroup()
-                        .addGap(334, 334, 334)
+                        .addGap(305, 305, 305)
                         .addComponent(jLabel12)))
-                .addContainerGap(668, Short.MAX_VALUE))
+                .addContainerGap(656, Short.MAX_VALUE))
         );
         panelXBusesLayout.setVerticalGroup(
             panelXBusesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +253,7 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbNuevoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmdActualizarBus))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelAbajoBuses.add(panelXBuses);
@@ -321,28 +319,28 @@ public class FrmParametrizacion extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(417, 417, 417)
+                        .addComponent(jLabel15))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(g2)
                         .addGap(18, 18, 18)
-                        .addComponent(txtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
+                        .addComponent(txtHoraSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1)
-                        .addGap(34, 34, 34)
-                        .addComponent(calendarFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(calendarFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(u2)
                         .addGap(18, 18, 18)
-                        .addComponent(comboRutaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addComponent(comboRutaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(m2)
                         .addGap(18, 18, 18)
-                        .addComponent(comboBusSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(cmdAnadirSalida))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(417, 417, 417)
-                        .addComponent(jLabel15)))
-                .addContainerGap(477, Short.MAX_VALUE))
+                        .addComponent(comboBusSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmdAnadirSalida)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,25 +460,26 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         panelFormularioRutasLayout.setHorizontalGroup(
             panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormularioRutasLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(g)
-                .addGap(18, 18, 18)
-                .addComponent(cmbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(u)
-                .addGap(18, 18, 18)
-                .addComponent(txtTiempoEst, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(m)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTarifaBase, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
-                .addGap(114, 114, 114)
-                .addComponent(btnAnadirRuta)
-                .addGap(130, 130, 130))
-            .addGroup(panelFormularioRutasLayout.createSequentialGroup()
-                .addGap(400, 400, 400)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelFormularioRutasLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(g)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(u)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTiempoEst, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(m)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTarifaBase, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAnadirRuta))
+                    .addGroup(panelFormularioRutasLayout.createSequentialGroup()
+                        .addGap(400, 400, 400)
+                        .addComponent(jLabel2)))
+                .addContainerGap(347, Short.MAX_VALUE))
         );
         panelFormularioRutasLayout.setVerticalGroup(
             panelFormularioRutasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,34 +544,36 @@ public class FrmParametrizacion extends javax.swing.JFrame {
         panelXRutaLayout.setHorizontalGroup(
             panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelXRutaLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelXRutaLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panelXRutaLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDestinoN, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(51, 51, 51)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDestinoN, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(cmbDestinoN)
-                        .addGap(184, 184, 184)
-                        .addGroup(panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelXRutaLayout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbRutacg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNuevaTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(cmdActualizarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbRutacg, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelXRutaLayout.createSequentialGroup()
-                        .addGap(391, 391, 391)
-                        .addComponent(jLabel3)))
-                .addContainerGap(257, Short.MAX_VALUE))
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelXRutaLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNuevaTarifa, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmdActualizarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(295, Short.MAX_VALUE))
+            .addGroup(panelXRutaLayout.createSequentialGroup()
+                .addGap(385, 385, 385)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelXRutaLayout.setVerticalGroup(
             panelXRutaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -623,36 +624,6 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
-        jScrollPane4.setPreferredSize(new java.awt.Dimension(900, 100));
-
-        txtMensajes.setEditable(false);
-        txtMensajes.setColumns(20);
-        txtMensajes.setLineWrap(true);
-        txtMensajes.setRows(4);
-        txtMensajes.setWrapStyleWord(true);
-        jScrollPane4.setViewportView(txtMensajes);
-
-        javax.swing.GroupLayout panelMensajeLayout = new javax.swing.GroupLayout(panelMensaje);
-        panelMensaje.setLayout(panelMensajeLayout);
-        panelMensajeLayout.setHorizontalGroup(
-            panelMensajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(panelMensajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelMensajeLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        panelMensajeLayout.setVerticalGroup(
-            panelMensajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 115, Short.MAX_VALUE)
-            .addGroup(panelMensajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMensajeLayout.createSequentialGroup()
-                    .addContainerGap(7, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(8, Short.MAX_VALUE)))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -661,18 +632,13 @@ public class FrmParametrizacion extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(panelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -878,6 +844,10 @@ public class FrmParametrizacion extends javax.swing.JFrame {
             mostrarMensaje("ERROR", "No se pudieron actualizar las salidas: " + e.getMessage());
         }
     }//GEN-LAST:event_cmbActualizarSalidasActionPerformed
+
+    private void cmbNuevoEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNuevoEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbNuevoEstadoActionPerformed
     private void llenarTablaRutas() {
         DefaultTableModel modelo = (DefaultTableModel) tablaRutas.getModel();
         modelo.setRowCount(0);
@@ -1074,7 +1044,6 @@ public class FrmParametrizacion extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel m;
     private javax.swing.JLabel m1;
@@ -1083,7 +1052,6 @@ public class FrmParametrizacion extends javax.swing.JFrame {
     private javax.swing.JPanel panelAbajoRuta;
     private javax.swing.JPanel panelBuses;
     private javax.swing.JPanel panelFormularioRutas;
-    private javax.swing.JPanel panelMensaje;
     private javax.swing.JPanel panelRutasPrincipal;
     private javax.swing.JPanel panelSalidas;
     private javax.swing.JPanel panelTabla;
@@ -1095,7 +1063,6 @@ public class FrmParametrizacion extends javax.swing.JFrame {
     private javax.swing.JTable tablaSalidas;
     private javax.swing.JTextField txtDestinoN;
     private javax.swing.JTextField txtHoraSalida;
-    private javax.swing.JTextArea txtMensajes;
     private javax.swing.JTextField txtNuevaTarifa;
     private javax.swing.JTextField txtPlacaBus;
     private javax.swing.JTextField txtTarifaBase;
