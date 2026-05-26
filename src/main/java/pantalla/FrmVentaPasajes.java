@@ -37,6 +37,9 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     private JPanel panelSillasIdaVuelta;
     private JPanel panelSillasRegreso;
     private JTextArea txtReciboRegreso;
+    private JComboBox<String> comboTipoViaje;
+    private JPanel panelRegreso;
+    private JLabel lblSalidaRegreso;
     
     /**
      * Creates new form FrmVentaPasajes
@@ -108,6 +111,7 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Venta de Pasajes");
@@ -404,6 +408,9 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
         jButton1.setText("Vender Tiquete");
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(this::jComboBox2ActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -428,7 +435,11 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(3, 3, 3)))))
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -448,7 +459,10 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -468,7 +482,7 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -486,9 +500,71 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
             actualizarBotonesSillas(jComboBox1, botonesSillasIda, sillaSeleccionada);
         });
         actualizarBotonesSillas(jComboBox1, botonesSillasIda, sillaSeleccionada);
+        comboTipoViaje = new JComboBox<>();
 
+comboTipoViaje = new JComboBox<>();
+
+comboTipoViaje.setModel(
+    new javax.swing.DefaultComboBoxModel<>(
+        new String[]{
+            "Solo Ida",
+            "Ida y Vuelta"
+        }
+    )
+);
+
+jPanel1.add(comboTipoViaje);
+
+lblSalidaRegreso = new JLabel("Salida Regreso:");
+
+comboSalidaRegreso = new JComboBox<>();
+
+cargarSalidasProgramadas(comboSalidaRegreso);
+
+panelRegreso = new JPanel();
+
+panelRegreso.setBorder(
+    javax.swing.BorderFactory.createTitledBorder("Sillas Regreso")
+);
+
+panelRegreso.setLayout(new GridLayout(5, 8));
+
+crearBotonesSillas(
+        panelRegreso,
+        botonesSillasRegreso,
+        false
+);
+
+jPanel1.add(lblSalidaRegreso);
+jPanel1.add(comboSalidaRegreso);
+jPanel1.add(panelRegreso);
+
+lblSalidaRegreso.setVisible(false);
+comboSalidaRegreso.setVisible(false);
+panelRegreso.setVisible(false);
+
+comboTipoViaje.addActionListener(
+        e -> cambiarTipoViaje()
+);
         pack();
     }
+    private void cambiarTipoViaje() {
+
+    String tipo = comboTipoViaje
+            .getSelectedItem()
+            .toString();
+
+    boolean idaVuelta =
+            tipo.equals("Ida y Vuelta");
+
+    lblSalidaRegreso.setVisible(idaVuelta);
+
+    comboSalidaRegreso.setVisible(idaVuelta);
+
+    panelRegreso.setVisible(idaVuelta);
+
+    pack();
+}
     
     private void cargarSalidasProgramadas(JComboBox<String> combo) {
         combo.removeAllItems();
@@ -620,13 +696,28 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     }
 
     private void refrescarSalidasYAsientos() {
-        cargarSalidasProgramadas(jComboBox1);
-        cargarSalidasProgramadas(comboSalidaIdaVuelta);
-        cargarSalidasProgramadas(comboSalidaRegreso);
-        actualizarBotonesSillas(jComboBox1, botonesSillasIda, sillaSeleccionada);
-        actualizarBotonesSillas(comboSalidaIdaVuelta, botonesSillasIdaVuelta, sillaIdaVueltaSeleccionada);
-        actualizarBotonesSillas(comboSalidaRegreso, botonesSillasRegreso, sillaRegresoSeleccionada);
+
+    cargarSalidasProgramadas(jComboBox1);
+
+    actualizarBotonesSillas(
+            jComboBox1,
+            botonesSillasIda,
+            sillaSeleccionada
+    );
+
+    if (comboSalidaRegreso != null) {
+
+        cargarSalidasProgramadas(
+                comboSalidaRegreso
+        );
+
+        actualizarBotonesSillas(
+                comboSalidaRegreso,
+                botonesSillasRegreso,
+                sillaRegresoSeleccionada
+        );
     }
+}
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -793,12 +884,104 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton68ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+
+    String tipo =
+            comboTipoViaje
+            .getSelectedItem()
+            .toString();
+
+    if (tipo.equals("Solo Ida")) {
+
+        if (sillaSeleccionada == -1) {
+
+            jTextArea3.setText(
+                    "Seleccione una silla."
+            );
+
+            return;
+        }
+
+        if (jTextField1
+                .getText()
+                .trim()
+                .isEmpty()) {
+
+            jTextArea3.setText(
+                    "Ingrese documento."
+            );
+
+            return;
+        }
+
+        if (jTextField2
+                .getText()
+                .trim()
+                .isEmpty()) {
+
+            jTextArea3.setText(
+                    "Ingrese nombre."
+            );
+
+            return;
+        }
+
         venderTiqueteIndividual();
+
+    }
+    else {
+
+        if (sillaSeleccionada == -1) {
+
+            jTextArea3.setText(
+                    "Seleccione silla ida."
+            );
+
+            return;
+        }
+
+        if (sillaRegresoSeleccionada == -1) {
+
+            jTextArea3.setText(
+                    "Seleccione silla regreso."
+            );
+
+            return;
+        }
+
+        String respuesta =
+                menu.getMyEmpresa()
+                .venderIdaVuelta(
+
+                        obtenerIdSalida(jComboBox1),
+
+                        sillaSeleccionada,
+
+                        obtenerIdSalida(
+                                comboSalidaRegreso
+                        ),
+
+                        sillaRegresoSeleccionada,
+
+                        jTextField1.getText(),
+
+                        jTextField2.getText()
+                );
+
+        jTextArea3.setText(respuesta);
+
+        refrescarSalidasYAsientos();
+    }
+}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -847,6 +1030,7 @@ public class FrmVentaPasajes extends javax.swing.JFrame {
     private javax.swing.JButton jButton68;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
